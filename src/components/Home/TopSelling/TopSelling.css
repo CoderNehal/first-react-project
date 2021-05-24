@@ -1,0 +1,12 @@
+.TopSellingHeading{
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.topSellingShelf-parent{
+	position: relative;
+	height: 251px;
+	display: flex;
+	align-items: center;
+}

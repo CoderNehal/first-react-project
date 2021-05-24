@@ -1,0 +1,13 @@
+.collection {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+/* @media (min-width: 1035px) {
+	.collection{
+        justify-content: center;
+        align-items: center;
+    }
+} */

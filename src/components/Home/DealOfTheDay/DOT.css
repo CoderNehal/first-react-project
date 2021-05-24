@@ -1,0 +1,149 @@
+.DealsOfTheDay {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 169px;
+	margin-bottom: 169px;
+	background: rgb(77, 44, 205);
+	background: linear-gradient(
+		180deg,
+		rgba(77, 44, 205, 1) 0%,
+		rgba(93, 78, 217, 1) 100%
+	);
+}
+.DODText {
+	font-family: PT Serif;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 18px;
+	/* or 18px */
+	letter-spacing: 0.01em;
+	color: #ffffff;
+	z-index: 1;
+	position: absolute;
+	top: 14px;
+	left: 14px;
+}
+.remainingTime {
+	position: absolute;
+	font-family: PT Serif;
+	top: 14px;
+	right: 14px;
+	display: flex;
+}
+.remainingTime .remaining,
+.time {
+	letter-spacing: 0.01em;
+	line-height: 12px;
+	font-weight: normal;
+}
+.remainingTime .remaining {
+	font-size: 16px;
+	color: #f77457;
+}
+.remainingTime .time {
+	font-size: 16px;
+	color: #00efd1;
+}
+.deals {
+	position: absolute;
+	top: 45px;
+	width: 90vw;
+	height: 262px;
+	box-shadow: 4px 4px 19px rgba(0, 0, 0, 0.25), -4px 4px 4px rgba(0, 0, 0, 0.25);
+
+	background-color: #ffffff;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+.deal {
+	/* width: 180.5px; */
+	width: 45vw;
+	height: 131px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.deal {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.deal .img {
+	width: 40%;
+	height: 100%;
+	display: flex;
+
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+.deal .img img {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	max-height: 100%;
+	max-width: 100%;
+	padding: 10px 0px;
+	padding-left: 5px;
+	height: auto;
+	max-height: 100%;
+	width: auto;
+	max-width: 100%;
+}
+.deal .productinfo {
+	width: 50%;
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	position: relative;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 4;
+	overflow: hidden;
+}
+.deal .productinfo .productName {
+	margin-top: 10px;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 12px;
+	margin-right: 10px;
+	color: #000;
+}
+
+.deal .productinfo .price {
+	text-align: center;
+	position: absolute;
+	bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.deal .productinfo .price p {
+	color: #00acea;
+	font-size: 16px;
+	margin: 0 !important;
+}
+.deal .productinfo .price small {
+	display: none;
+	color: #000;
+	opacity: 0.5;
+	font-size: 10px;
+	margin-left: 5px;
+	text-decoration: line-through;
+}
+@media (min-width:720px){
+	.DealsOfTheDay{
+		margin-bottom: 209px;
+	}
+	.deal{
+		height: 166px;
+	}
+	.deals{
+		height: 332px;
+	}
+}

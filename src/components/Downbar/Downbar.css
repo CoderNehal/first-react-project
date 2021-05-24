@@ -1,0 +1,64 @@
+.downbar-parent{
+   margin-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.downbar{
+
+    width: 100%;
+    height: 90.36px;
+    background-color: #000;
+    position: fixed;
+   bottom: 0px;
+    z-index: 5;
+    /* color: red; */
+    /* border-radius: 90% 90% 0% 0%;
+     */
+     clip-path: polygon(12% 0, 88% 0, 100% 25%, 100% 100%, 80% 100%, 20% 100%, 0 100%, 0 25%);
+}
+
+.downbar .icons{
+    /* border: 1px solid red; */
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    height: 40.36px;
+   
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+}
+
+.downbar .icons .icon:nth-child(1) .active{
+   content: url(../../images/Home\ active.svg);
+
+}
+.downbar .icons .icon:nth-child(2) .active{
+    content: url(../../images/Search\ active.svg);
+ 
+ }
+ .downbar .icons .icon:nth-child(3) .active{
+    content: url(../../images/collection\ active.svg);
+ 
+ }
+ .downbar .icons .icon:nth-child(4) .active{
+    content: url(../../images/user\ active.svg);
+ 
+ }
+ 
+
+.downbar .icons .icon:nth-child(2){
+  margin-top: -30px;
+  
+  
+}
+.downbar .icons .icon:nth-child(3){
+    margin-top: -30px;
+  }
+
+  @media(min-width:720px){
+     .downbar-parent{
+        display: none;
+     }
+  }

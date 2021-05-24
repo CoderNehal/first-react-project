@@ -1,0 +1,56 @@
+.catbox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* padding:0 11em; */
+	
+}
+/* .catbox:nth-child(1){
+    margin-left: 29px;
+} */
+.catbox #cat-item-1,
+#cat-item-2,
+#cat-item-3 {
+	color: #fff;
+	height: 5em;
+	width: 5.3em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 10px;
+	font-size: 18px;
+	font-family: 'PT Sans';
+	/* margin-left: 29px; */
+	margin-top: 10px;
+	margin: 10px;
+	border-radius: 5px;
+	background-position: center;
+	background-size: cover;
+
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.catbox #cat-item-1 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('../../../images/pexels-torsten-dettlaff-193004.jpg');
+}
+
+.catbox #cat-item-2 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('../../../images/pexels-craig-dennis-205421.jpg');
+}
+.catbox #cat-item-3 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('../../../images/pexels-jess-bailey-designs-983831.jpg');
+}
+
+@media (min-width: 700px) {
+	.catbox {
+		justify-content: space-evenly;
+	}
+	.catbox #cat-item-1,
+	#cat-item-2,
+	#cat-item-3 {
+		height: 7em;
+		width: 10em;
+	}
+}

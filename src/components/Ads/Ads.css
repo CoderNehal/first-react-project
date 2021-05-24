@@ -1,0 +1,28 @@
+.Ads{
+    width: 100%;
+    height: auto;
+   
+    display: flex;
+    justify-content: center;
+   
+    
+}
+/* .Ads img:nth-child(1){
+    width: 100%;
+    height: 127px;
+} */
+.Ads .adOffer{
+    margin: 10px 5vw;
+    height: auto;
+	max-height: 100%;
+	width: auto;
+	max-width: 100%;
+}
+@media(min-width:720px){
+    .Ads .adOffer{
+        width:80vw;
+        max-width: 80%;
+        height: 50%;
+
+    }
+}

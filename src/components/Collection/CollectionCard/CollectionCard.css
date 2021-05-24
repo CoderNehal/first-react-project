@@ -1,0 +1,25 @@
+
+ .CollectionCard{
+    margin: 0.5em;
+    margin-top: 0.9em;
+    width: 18em;
+    height: 5.90em;
+   border: 1px solid #fff;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+       
+	color: rgb(255, 255, 255);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-shadow: 2px 2px #000;
+	font-size: 18px;
+	font-family: 'PT Sans';
+	/* margin-left: 29px; */
+	margin-top: 10px;
+	margin: 10px;
+	
+	background-position: center;
+	background-size: cover;
+
+	filter: drop-shadow(0px 7px 7px rgba(0, 0, 0, 0.25));
+}

@@ -1,0 +1,26 @@
+.carousel-inner .item,
+.carousel-control {
+	height: auto;
+}
+.carousel-control{
+	height: auto;
+}
+.categoriesHeading {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.carousel-inner .item img{
+	height: auto;
+	max-height: 100%;
+	width: 100%;
+	max-width: 100%;
+}
+
+@media (min-width: 720px) {
+	.carousel-inner .item,
+	.carousel-control {
+		height: auto;
+	}
+}

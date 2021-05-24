@@ -1,0 +1,215 @@
+.Header {
+	height: 135px;
+	background-color: #ffffff;
+	margin-bottom: 20px;
+}
+
+.Navbar {
+	width: 100%;
+	height: 79px;
+	margin: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: fixed;
+	z-index: 5;
+	background-color: #fff;
+}
+
+.Navbar.active {
+	background-color: #6038ff;
+	transition: all 0.3s ease;
+	border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.NvabarLeft img:nth-child(1) {
+	height: 47px;
+	width: 37px;
+	margin-left: 7px;
+	cursor: pointer;
+}
+
+.NvabarLeft img:nth-child(2) {
+	height: 47px;
+	width: 92px;
+	margin-left: 15px;
+	border-radius: 15px;
+}
+
+.NavbarRight {
+	width: 145px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.NavbarRight .fav {
+	height: 55px;
+	width: 68px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.NavbarRight .fav img {
+	height: 22px;
+	width: 23.999000549316406px;
+}
+
+.NavbarRight .cart {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.NavbarRight .cart img {
+	height: 26px;
+	width: 32px;
+	left: 355px;
+	top: 23px;
+	border-radius: 0px;
+}
+
+/*------------------------Search bar---------------------------------*/
+.Header .search {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	padding-top: 79px;
+}
+
+.Header .search #magnifier {
+	height: 22px;
+	width: 23px;
+	color: rgba(0, 0, 0, 0.175);
+	border-radius: 0px;
+	z-index: 1;
+	margin-left: 18px;
+	margin-right: 19px;
+	margin-top: 11px;
+}
+
+.Header .search #line {
+	margin-top: 11px;
+	margin-right: -40px;
+	z-index: 1;
+}
+
+.Header .search .searchbar {
+	height: 41px;
+	width: 90vw;
+	outline: none;
+	border: none;
+	margin-top: 11px;
+	margin-left: -15px;
+	box-shadow: 0px 7px 26px -8px rgba(0, 0, 0, 0.15);
+	border-radius: 6px;
+	padding-left: 80px;
+	font-size: 16px;
+}
+
+.sidebar {
+	visibility: hidden;
+	position: relative;
+	height: 100vh;
+	border-right: 1px solid;
+	position: fixed;
+	z-index: 10;
+	background-color: white;
+	transition: width 0.7s;
+	box-shadow: 4px 2px 26px -1px rgba(0, 0, 0, 0.82);
+	-webkit-box-shadow: 4px 2px 26px -1px rgba(0, 0, 0, 0.82);
+	-moz-box-shadow: 4px 2px 26px -1px rgba(0, 0, 0, 0.82);
+}
+
+.sidebar .X {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: flex;
+	font-family: 'roboto';
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	font-size: 25px;
+	color: #1f5fe0;
+	cursor: pointer;
+	font-weight: 450;
+}
+
+.sidebar .profileDetails {
+	margin-top: 40px;
+	width: 100%;
+	height: 11em;
+	position: relative;
+}
+
+.sidebar .profileDetails .profilePic {
+	margin-left: 32%;
+	width: 88px;
+	height: 88px;
+	border-radius: 50%;
+	border: 2px solid #ffffff;
+	box-shadow: 0px 2px 18px 0px rgba(0, 0, 0, 0.25);
+	background: url('../../images/userIcon.jpg');
+	background-position: center;
+	background-size: cover;
+
+	box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar .profileDetails .sidebarusername,
+.sidebarEmail {
+	margin: 0 41px;
+	font-family: Ropa Sans;
+	font-style: normal;
+	font-weight: normal;
+	margin-top: 0.5em;
+	font-size: 1.1em;
+	text-align: center;
+	letter-spacing: 0.03em;
+	color: #000000;
+}
+
+.sidebar .profileDetails .sidebarEmail {
+	margin-top: 0.3em;
+	opacity: 0.5;
+}
+
+.sidebar .logOut {
+	cursor: pointer;
+	position: absolute;
+	width: 100%;
+	height: 16px;
+	text-align: center;
+	top: 28em;
+	font-family: Open Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 57.2%;
+	letter-spacing: 0.03em;
+	color: #ff2e00;
+}
+.sidebar .sidebarsignup {
+	width: 100%;
+
+	height: 100vh;
+	cursor: pointer;
+	position: absolute;
+	text-align: center;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.sidebar .sidebarsignup p {
+	
+	color: #fff;
+	padding: 10px;
+	background: rgba(77, 44, 205, 1);
+	border: 1px solid #000;
+}

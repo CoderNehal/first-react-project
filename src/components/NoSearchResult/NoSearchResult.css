@@ -1,0 +1,21 @@
+.NoSearchResult{
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    
+}
+.NoSearchResult img{
+    height: auto;
+    max-height:50vh ;
+    width: auto;
+   max-width: 100vw;
+}
+@media (min-width: 1035px) {
+	.NoSearchResult img{
+     
+        max-height:70vh ;
+        
+      
+    }
+}

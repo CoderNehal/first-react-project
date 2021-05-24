@@ -1,0 +1,116 @@
+.LAHeading{
+    position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.LA-Parent{
+	position: relative;
+	width: 100%;
+height: auto;
+
+margin-top: 10px;
+text-align: center;
+
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+
+}
+.LA-Background{
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+height: 100%;
+z-index: -100;
+clip-path: polygon(0 26%, 100% 0, 100% 74%, 0 100%);
+
+background: #FF2E00;
+ 
+}
+.LA-Product{
+margin-top: 10px;
+width:85vw;
+height: 232.66px;
+z-index: 2;
+background: #FFFFFF;
+border: 1px solid #000000;
+box-sizing: border-box;
+box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25), inset 6px 5px 4px #FFFFFF;
+display: flex;
+
+
+}
+
+.LA-Parent .LA-Product #imgBox{
+	width: 40%;
+
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.LA-Parent .LA-Product #imgBox img{
+	width: 100%;
+	height: auto;
+	
+   padding: 10px 10px;
+   height: auto;
+	max-height: 100%;
+	width: auto;
+	max-width: 100%;
+}
+.LA-Parent .LA-Product #productInfo{
+
+height: 100%;
+width: 60%;
+display: flex;
+justify-content: space-around;
+align-items: center;
+flex-direction: column;
+
+}
+.LA-Parent .LA-Product #productInfo .ProdName,.LA-Parent a{
+	font-family: Ropa Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 88.2%;
+	/* or 13px */
+	width: 80%;
+	color: #000;
+	text-align: center;
+	letter-spacing: 0.03em;
+}
+.LA-Parent .LA-Product #productInfo .price{
+	text-align: center;
+	font-family: Ropa Sans;
+	letter-spacing: 0.03em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.LA-Parent .LA-Product #productInfo .price p{
+	color: #4D2CCD;
+	font-size: 20px;
+	margin: 0 !important;
+}
+.LA-Parent .LA-Product #productInfo .price small{
+	padding-left: 10%;
+	color: #000;
+	opacity: 0.5;
+	font-size: 16px;
+	
+	text-decoration: line-through;
+}
+@media (min-width:720px){
+	.LA-Parent .LA-Product #imgBox img{
+		
+	   padding: 10px 10px;
+	   height: auto;
+		max-height:90%;
+		width: auto;
+		max-width: 100%;
+	}
+}
