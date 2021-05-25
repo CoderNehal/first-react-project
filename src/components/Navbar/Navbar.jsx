@@ -11,11 +11,13 @@ import Home from '../../images/Vector-3.svg';
 import Search from '../../images/Vector-2.svg';
 import Collection from '../../images/Vector-1.svg';
 import User from '../../images/Vector.svg';
+import {NavLink} from 'react-router-dom'
 const Navbar = (props) => {
-	const [width, setWidth] = useState(true);
+	const [width, setWidth] = useState(false);
 	const [sidebarContent, setsidebarContent] = useState(false);
 	const [inpVal, setinpVal] = useState('');
 	const [whyThis, setwhyThis] = useState('');
+	const mediaQuery = window.matchMedia('(max-width: 720px)')
 	const sidebarStyle = {
 		width: width ? '256px' : '0px',
 		visibility: width ? 'visible' : 'hidden',
@@ -24,7 +26,7 @@ const Navbar = (props) => {
 	if (width == true) {
 		setTimeout(() => {
 			setsidebarContent(true);
-		}, 1400);
+		}, 700);
 	}
 	const proFileStyle = {
 		display: sidebarContent ? 'block' : 'none',
@@ -60,32 +62,39 @@ const Navbar = (props) => {
 					{localStorage.getItem('email')}
 				</div>
 			</div>
-			<div className='SidebarOptions'>
+			<div style={proFileStyle} className='SidebarOptions'>
+			<NavLink exact to='/' onClick={ToggleSidebar}>
 				<div className='SidebarItem'>
 					<img src={Home} alt='' />
 					<p>Home</p>
 				</div>
+				</NavLink>
+				<NavLink exact to='/search'>
 				<div className='SidebarItem'>
 					<img src={Search} alt='' />
 					<p>Search</p>
 				</div>
+				</NavLink>
+				<NavLink exact to='/collection'>
 				<div className='SidebarItem'>
 					<img src={Collection} alt='' />
 					<p>Collection</p>
 				</div>
+				</NavLink>
+				<NavLink exact to='/user'>
 				<div className='SidebarItem'>
 					<img src={User} alt='' />
 					<p>User</p>
 				</div>
-				
+				</NavLink>
 			</div>
-			<p className='logOut' onClick={logOutUser}>
+			<p className='logOut noselect' onClick={logOutUser}>
 				Log Out
 			</p>
 		</>
 	);
 	let LoadSignUpButtton = (
-		<div style={signupLoginStyle} onClick={logInUser} className='sidebarsignup'>
+		<div style={signupLoginStyle} onClick={logInUser} className='sidebarsignup noselect'>
 			<p>Sign Up / Log In</p>
 		</div>
 	);
@@ -115,10 +124,10 @@ const Navbar = (props) => {
 					<img className='Logo' src={okLogo} alt='' />
 				</div>
 				<div className='NavbarRight'>
-					<div className='fav'>
+					<div className='fav noselect'>
 						<img src={fav} alt='' />
 					</div>
-					<div className='cart'>
+					<div className='cart noselect'>
 						<Link to='/cart'>
 							<img id='cart' src={cart} alt='' />
 						</Link>

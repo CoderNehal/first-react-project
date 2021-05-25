@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 
 const Downbar = () => {
 	return (
-		<div className='downbar-parent'>
+		<div className='downbar-parent noselect'>
 			<div className='downbar'>
 				<div className='icons'>
 					<div className='icon'>

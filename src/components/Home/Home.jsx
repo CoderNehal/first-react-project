@@ -77,15 +77,7 @@ class Home extends Component {
 	}
 
 	render() {
-		// const changeBackground = ()=>{
-		//   if(window.scrollY > 79){
-		//    this.setState({ navbar: true });
-		//   }
-		//   else{
-		//     this.setState({ navbar: false  });
-		//   }
-		// }
-		// window.addEventListener('scroll',changeBackground)
+		
 
 		var html = (
 			<>

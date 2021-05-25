@@ -62,7 +62,7 @@ align-items: center;
 	top: -20px;
 	right: -5px;
 	background:rgb(255, 223, 0);
-	color: #fff;
+	color: rgba(77, 44, 205, 1);
 	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 	display: flex;
 	justify-content: center;
