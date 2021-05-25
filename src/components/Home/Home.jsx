@@ -14,14 +14,50 @@ import Ad from '../../images/1745 - Copy.jpg';
 import Ad2 from '../../images/black-friday-themed-online-shopping-design-black-background_145865-156.jpg';
 import Trending from './Trending/Trending';
 
-// import Slider from '../slider/slider'
-//import Slider from 'react-slick'
+
 
 class Home extends Component {
 	state = {
 		navbar: false,
 		Loading: true,
 		imgs: [],
+		TrendingProducts: [
+			{
+				id: 'fEWN9QvqrUYs8hY67mRy',
+				name: 'Apple Watch Series 5 Space Gray Aluminium Case',
+				price: 52499,
+				discount: 20,
+				img: 'https://images-na.ssl-images-amazon.com/images/I/71fp5ankbqL._AC_SL1500_.jpg',
+			},
+			{
+				id: 'tfefBcs7JHGZ0DbntQ0s',
+				name: 'ASUS ROG Zephyrus G14, 14 FHD 120Hz, Ryzen 7',
+				price: 139990,
+				discount: 10,
+				img: 'https://images-na.ssl-images-amazon.com/images/I/71AcVXyqTQL._SL1500_.jpg',
+			},
+			{
+				id: 'knA9t1aE9A02JjFHN7dp',
+				name: 'New Apple iPhone 12 Pro Max (128GB) - Silver',
+				price: 1259000,
+				discount: 3,
+				img: 'https://m.media-amazon.com/images/I/71umuN8XVeL._AC_SL1500_.jpg',
+			},
+			{
+				id: 'uylKAeiM8L1gtgSgvtYd',
+				name: 'Samsung Galaxy Note 20 Ultra 5G (Mystic Bronze, 12GB RAM, 256GB Storage)',
+				price: 90000,
+				discount: 10,
+				img: 'https://images-na.ssl-images-amazon.com/images/I/81frwlzRG5L._SL1500_.jpg',
+			},
+			{
+				id: 'fs2LoqZKXwXutiFMmeJc',
+				name: 'OnePlus 8T 5G (Aquamarine Green, 8GB RAM, 128GB Storage)',
+				price: 43000,
+				discount: 10,
+				img: 'https://m.media-amazon.com/images/I/71CuwgwCQdL._AC_SL1500_.jpg',
+			},
+		],
 	};
 	componentDidMount() {
 		db.collection('carousel')
@@ -66,10 +102,12 @@ class Home extends Component {
 					</div>
 				</div>
 				<hr />
-				<Trending />
-				{/* <div className='topSellingShelf-parent'>
-					
-				</div> */}
+
+				<div className='topSellingShelf-parent'>
+					{this.state.TrendingProducts.map((product) => {
+						return <Trending key={product.id} data={product} />;
+					})}
+				</div>
 				<hr />
 				<Ads Ad={Ad2} />
 				<DealsOfTheDay />
