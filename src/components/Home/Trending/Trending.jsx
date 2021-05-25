@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Trending.css';
-
+import {Link} from 'react-router-dom'
 
 const Trending = ({ data }) => {
 	console.log(data);
 
 	return (
-		<div className='Trending'>
+		
+		<Link to={`/shop/${data.id}`} className='Trending'>
+			<div className="star">{data.discount}%</div>
 			<div className='TrendingImgBox'>
 				<img src={data.img} alt='' />
 			</div>
@@ -18,7 +20,8 @@ const Trending = ({ data }) => {
 					<span>₹{((data.price + (data.price * data.discount)/100).toFixed())}</span>
 				</div>
 			</div>
-		</div>
+		</Link>
+		
 	);
 };
 

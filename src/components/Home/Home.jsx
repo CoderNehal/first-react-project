@@ -44,11 +44,11 @@ class Home extends Component {
 				img: 'https://m.media-amazon.com/images/I/71umuN8XVeL._AC_SL1500_.jpg',
 			},
 			{
-				id: 'uylKAeiM8L1gtgSgvtYd',
-				name: 'Samsung Galaxy Note 20 Ultra 5G (Mystic Bronze, 12GB RAM, 256GB Storage)',
-				price: 90000,
-				discount: 10,
-				img: 'https://images-na.ssl-images-amazon.com/images/I/81frwlzRG5L._SL1500_.jpg',
+				id: 'fEWN9QvqrUYs8hY67mRy',
+				name: 'Apple Watch Series 5 Space Gray Aluminium Case',
+				price: 52499,
+				discount: 20,
+				img: 'https://images-na.ssl-images-amazon.com/images/I/71fp5ankbqL._AC_SL1500_.jpg',
 			},
 			{
 				id: 'fs2LoqZKXwXutiFMmeJc',
@@ -93,7 +93,7 @@ class Home extends Component {
 				<Carousel imgs={this.state.imgs} />
 				<div className='containar'>
 					<Categories />
-
+					<Ads Ad={Ad2} />
 					<div className='categoriesHeading'>
 						<h3 id='categories'>Top Selling</h3>
 						<p id='more'>
@@ -102,14 +102,14 @@ class Home extends Component {
 					</div>
 				</div>
 				<hr />
-
+				
 				<div className='topSellingShelf-parent'>
 					{this.state.TrendingProducts.map((product) => {
 						return <Trending key={product.id} data={product} />;
 					})}
 				</div>
 				<hr />
-				<Ads Ad={Ad2} />
+				
 				<DealsOfTheDay />
 				<Ads Ad={Ad} />
 				<LA />
