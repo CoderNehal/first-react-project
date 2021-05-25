@@ -7,9 +7,12 @@ import cart from '../../images/Cart.svg';
 import magnifier from '../../images/magnifier.svg';
 import line from '../../images/Line 8.svg';
 import { Link } from 'react-router-dom';
-import $ from 'jquery'
+import Home from '../../images/Vector-3.svg';
+import Search from '../../images/Vector-2.svg';
+import Collection from '../../images/Vector-1.svg';
+import User from '../../images/Vector.svg';
 const Navbar = (props) => {
-	const [width, setWidth] = useState(false);
+	const [width, setWidth] = useState(true);
 	const [sidebarContent, setsidebarContent] = useState(false);
 	const [inpVal, setinpVal] = useState('');
 	const [whyThis, setwhyThis] = useState('');
@@ -30,10 +33,8 @@ const Navbar = (props) => {
 		display: sidebarContent ? 'flex' : 'none',
 	};
 	const ToggleSidebar = () => {
-		
 		setWidth(!width);
 		setsidebarContent(false);
-		
 	};
 	const logInUser = () => {
 		localStorage.setItem('isLogged', 'true');
@@ -50,7 +51,6 @@ const Navbar = (props) => {
 
 	let LoadThisSidebar = (
 		<>
-			
 			<div style={proFileStyle} className='profileDetails'>
 				<div style={proFileStyle} className='profilePic'></div>
 				<div style={proFileStyle} className='sidebarusername'>
@@ -59,6 +59,25 @@ const Navbar = (props) => {
 				<div style={proFileStyle} className='sidebarEmail'>
 					{localStorage.getItem('email')}
 				</div>
+			</div>
+			<div className='SidebarOptions'>
+				<div className='SidebarItem'>
+					<img src={Home} alt='' />
+					<p>Home</p>
+				</div>
+				<div className='SidebarItem'>
+					<img src={Search} alt='' />
+					<p>Search</p>
+				</div>
+				<div className='SidebarItem'>
+					<img src={Collection} alt='' />
+					<p>Collection</p>
+				</div>
+				<div className='SidebarItem'>
+					<img src={User} alt='' />
+					<p>User</p>
+				</div>
+				
 			</div>
 			<p className='logOut' onClick={logOutUser}>
 				Log Out
@@ -74,22 +93,18 @@ const Navbar = (props) => {
 	const handleSearch = (e) => {
 		setwhyThis(`/search/${inpVal}`);
 		if (e.key == 'Enter') {
-			
-			
-			document.getElementById('search').click()
-			
+			document.getElementById('search').click();
 		}
 	};
 	const handleSearchText = (e) => {
-		
 		setinpVal(e.target.value);
 	};
 	return (
 		<div className='Header'>
 			<div style={sidebarStyle} className='sidebar'>
-			<div className='X' onClick={ToggleSidebar}>
-				X
-			</div>
+				<div className='X' onClick={ToggleSidebar}>
+					X
+				</div>
 				{localStorage.getItem('isLogged') == 'true'
 					? LoadThisSidebar
 					: LoadSignUpButtton}
@@ -113,7 +128,7 @@ const Navbar = (props) => {
 			<Link
 				to={{
 					pathname: `${whyThis}`,
-					Props:`${inpVal}`
+					Props: `${inpVal}`,
 				}}>
 				<div className='search' id='search'>
 					<img src={magnifier} id='magnifier' alt='' />

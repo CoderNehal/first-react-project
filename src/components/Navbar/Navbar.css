@@ -207,9 +207,41 @@
 	align-items: center;
 }
 .sidebar .sidebarsignup p {
-	
 	color: #fff;
 	padding: 10px;
 	background: rgba(77, 44, 205, 1);
 	border: 1px solid #000;
+}
+.sidebar .SidebarOptions {
+	width: 80%;
+	height: 300px;
+	
+	margin-left: 30px;
+}
+.sidebar .SidebarOptions .SidebarItem{
+	font-family: 'Open Sans';
+	position: relative;
+	width:100%;
+	height: 3em;
+	
+	margin-bottom: 1em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.sidebar .SidebarOptions .SidebarItem img{
+	left: 10px;
+	position: absolute;
+	width: 1.6em;
+	height:1.5em;
+}
+.sidebar .SidebarOptions .SidebarItem p{
+	color:#1F5FE0;
+	font-size: 1.5em;
+	padding-top: 10px;
+	letter-spacing: 0.03em;
+}
+.sidebar .SidebarOptions .SidebarItem:nth-child(1){
+	background-color: rgba(196,196,196,0.2) ;
+	border-radius:10px
 }
