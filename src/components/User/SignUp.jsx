@@ -31,21 +31,22 @@ const SignUp = () => {
 			}
 		});
 	};
-
+	
 	const HandleSignUp = () => {
 		 setLoading(true);
 		 fire
 		 	.auth()
 		 	.createUserWithEmailAndPassword(email, password)
 		 	.then((res) => {
-		 		const currentUser = fire.auth().currentUser;
+		 		
 		 		setLoading(false);
 		 		if ('user' in res) {
+					const currentUser = fire.auth().currentUser;
 		 			setuser(currentUser);
 		 			localStorage.setItem('isLogged', 'true');
-		 			localStorage.setItem('username', 'OurKart user');
+		 			
 		 			localStorage.setItem('email', email);
-		 			localStorage.setItem('userId', currentUser.displayName);
+		 			localStorage.setItem('userId', currentUser.uid);
 		 			$('#Message').css('color', 'green');
 		 			$('#Message').text('account created  successfully!')
 		 			setInterval(() => {
@@ -126,7 +127,7 @@ const SignUp = () => {
 				</div>
 			);
 		} else {
-			return <SignUpAdditionalData />;
+			return <SignUpAdditionalData id={fire.auth().currentUser.uid} />;
 		}
 	}
 };

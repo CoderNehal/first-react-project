@@ -56,6 +56,11 @@ const Navbar = (props) => {
 		localStorage.removeItem('username');
 		localStorage.removeItem('email');
 		localStorage.removeItem('userId')
+		localStorage.removeItem('name');
+		localStorage.removeItem('address')
+		localStorage.removeItem('city')
+		localStorage.removeItem('pincode')
+		localStorage.removeItem('gender')
 		window.location.reload(true);
 		fire.auth().signOut();
 	};
