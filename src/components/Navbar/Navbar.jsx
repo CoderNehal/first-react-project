@@ -6,7 +6,7 @@ import fav from '../../images/Fav.svg';
 import cart from '../../images/Cart.svg';
 import magnifier from '../../images/magnifier.svg';
 import line from '../../images/Line 8.svg';
-import { Link } from 'react-router-dom';
+import { Link ,Redirect} from 'react-router-dom';
 import Home from '../../images/Vector-3.svg';
 import Search from '../../images/Vector-2.svg';
 import Collection from '../../images/Vector-1.svg';
@@ -18,7 +18,10 @@ const Navbar = (props) => {
 	const [sidebarContent, setsidebarContent] = useState(false);
 	const [inpVal, setinpVal] = useState('');
 	const [whyThis, setwhyThis] = useState('');
-	const mediaQuery = window.matchMedia('(max-width: 720px)')
+	const [redirect, setredirect] = useState(null);
+	if (redirect) {
+		return <Redirect to={redirect} />;
+	}
 	const sidebarStyle = {
 		width: width ? '256px' : '0px',
 		visibility: width ? 'visible' : 'hidden',
@@ -40,15 +43,14 @@ const Navbar = (props) => {
 		setsidebarContent(false);
 	};
 	const logInUser = () => {
-		localStorage.setItem('isLogged', 'true');
-		localStorage.setItem('username', 'Nehal Ughade');
-		localStorage.setItem('email', 'Nehalughade1221@gmail.com');
-		window.location.reload(true);
+		
+		setredirect('/user');
 	};
 	const logOutUser = () => {
-		localStorage.removeItem('isLogged');
+		localStorage.setItem('isLogged',false);
 		localStorage.removeItem('username');
 		localStorage.removeItem('email');
+		localStorage.removeItem('userId')
 		window.location.reload(true);
 		fire.auth().signOut();
 	};

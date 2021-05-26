@@ -8,12 +8,16 @@
 	font-size: 1.1em;
 }
 .User {
+	
 	padding: 0 1.3em;
 	width: 100vw;
 	height: 80vh;
 	
+	background: #fff;
+	
 }
 .UserContainer .User .userNav {
+	
 	width: 100%;
 	height: 4em;
 
@@ -21,6 +25,7 @@
 	align-items: center;
 }
 .UserContainer .User .userNav img {
+	
 	position: relative;
 	left: -25px;
 	padding: 10px;
@@ -56,7 +61,32 @@ box-shadow: rgba(76,44,205,0.5) 0px 5px 25px, rgba(0, 0, 0, 0.05) 0px 5px 25px;
 }
 
 .User h5{
-	text-align: center;
+	text-align: center;	
 	color: greenyellow;
 	margin-top: 3.5em;
+}
+.UserContainer #loginLogo{
+	position: absolute;
+	top: 0.7em;
+	left:2em;
+	display: none;
+	width:9em;
+	height:9em;
+}
+@media (min-width:720px){
+	.UserContainer{
+		height:100vh;
+		background: url('../../images/Headphones_music_black_background_akg_1920x1200.jpg');
+		background-position: center;
+		background-size: cover;
+		background-clip: cover;
+	}
+	.User{
+		box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+		
+		width: 30vw;
+	}
+	.UserContainer #loginLogo{
+		display: block;
+	}
 }

@@ -11,7 +11,7 @@ import ProductDescription from './components/ProductDescription/ProductDescripti
 import Cart from './components/Cart/Cart'
 
 function App() {
-  localStorage.setItem('userId','k6QB5spPXjVoH0MkWd8tNkh5KOh1')
+
 
   return (
     <div className="App">
