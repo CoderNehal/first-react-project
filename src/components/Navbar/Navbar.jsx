@@ -42,6 +42,11 @@ const Navbar = (props) => {
 		setWidth(!width);
 		setsidebarContent(false);
 	};
+	const ToggleSidebarWhenNoUserFound = ()=>{
+	
+		setWidth(false);
+		setsidebarContent(false);
+	}
 	const logInUser = () => {
 		
 		setredirect('/login');
@@ -57,7 +62,11 @@ const Navbar = (props) => {
 
 	let LoadThisSidebar = (
 		<>
+		<div className='X' onClick={ToggleSidebar}>
+					X
+				</div>
 			<div style={proFileStyle} className='profileDetails'>
+			
 				<div style={proFileStyle} className='profilePic'></div>
 				<div style={proFileStyle} className='sidebarusername'>
 					{localStorage.getItem('username')}
@@ -98,8 +107,11 @@ const Navbar = (props) => {
 		</>
 	);
 	let LoadSignUpButtton = (
-		<div style={signupLoginStyle} onClick={logInUser} className='sidebarsignup noselect'>
-			<p>Sign Up / Log In</p>
+		<div style={signupLoginStyle}  className='sidebarsignup noselect'>
+			<div className='X'  onClick={ToggleSidebarWhenNoUserFound}>
+					X
+				</div>
+			<p onClick={logInUser}>Sign Up / Log In</p>
 		</div>
 	);
 
@@ -115,9 +127,7 @@ const Navbar = (props) => {
 	return (
 		<div className='Header'>
 			<div style={sidebarStyle} className='sidebar'>
-				<div className='X' onClick={ToggleSidebar}>
-					X
-				</div>
+				
 				{localStorage.getItem('isLogged') == 'true'
 					? LoadThisSidebar
 					: LoadSignUpButtton}
@@ -129,7 +139,7 @@ const Navbar = (props) => {
 				</div>
 				<div className='NavbarRight'>
 					<div className='fav noselect'>
-						<img src={fav} alt='' />
+						<img onClick={redirect?logInUser:null} src={fav} alt='' />
 					</div>
 					<div className='cart noselect'>
 						<Link to='/cart'>
