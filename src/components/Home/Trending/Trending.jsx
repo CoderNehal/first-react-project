@@ -3,7 +3,7 @@ import './Trending.css';
 import {Link} from 'react-router-dom'
 
 const Trending = ({ data }) => {
-	console.log(data);
+	
 
 	return (
 		

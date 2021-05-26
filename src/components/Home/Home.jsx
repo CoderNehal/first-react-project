@@ -14,8 +14,6 @@ import Ad from '../../images/1745 - Copy.jpg';
 import Ad2 from '../../images/black-friday-themed-online-shopping-design-black-background_145865-156.jpg';
 import Trending from './Trending/Trending';
 
-
-
 class Home extends Component {
 	state = {
 		navbar: false,
@@ -77,8 +75,6 @@ class Home extends Component {
 	}
 
 	render() {
-		
-
 		var html = (
 			<>
 				<Navbar nav={this.state.navbar} />
@@ -94,14 +90,14 @@ class Home extends Component {
 					</div>
 				</div>
 				<hr />
-				
+
 				<div className='topSellingShelf-parent'>
 					{this.state.TrendingProducts.map((product) => {
 						return <Trending key={product.id} data={product} />;
 					})}
 				</div>
 				<hr />
-				
+
 				<DealsOfTheDay />
 				<Ads Ad={Ad} />
 				<LA />

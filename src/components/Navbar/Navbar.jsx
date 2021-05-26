@@ -12,6 +12,7 @@ import Search from '../../images/Vector-2.svg';
 import Collection from '../../images/Vector-1.svg';
 import User from '../../images/Vector.svg';
 import {NavLink} from 'react-router-dom'
+import {fire} from '../../Firebase/Firebase'
 const Navbar = (props) => {
 	const [width, setWidth] = useState(false);
 	const [sidebarContent, setsidebarContent] = useState(false);
@@ -49,6 +50,7 @@ const Navbar = (props) => {
 		localStorage.removeItem('username');
 		localStorage.removeItem('email');
 		window.location.reload(true);
+		fire.auth().signOut();
 	};
 
 	let LoadThisSidebar = (
