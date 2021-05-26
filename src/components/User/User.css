@@ -32,7 +32,7 @@
 	height: 100%;
 	opacity: 0.5;
 }
-.User input[type='text'],
+.User .email,
 input[type='password'] {
 	width: 100%;
 	border: none;
@@ -47,7 +47,7 @@ input[type='password'] {
 	justify-content: center;
 }
 .User input[type='button'] {
-	position: absolute;
+	position: relative;
 	width: 90%;
 	height: 2.5em;
 	color: #ffffff;
@@ -63,7 +63,7 @@ box-shadow: rgba(76,44,205,0.5) 0px 5px 25px, rgba(0, 0, 0, 0.05) 0px 5px 25px;
 .User h5{
 	text-align: center;	
 	color: greenyellow;
-	margin-top: 3.5em;
+	margin-top: 2.5em;
 }
 .User #dontHaveAccount{
 	color: #000;
@@ -71,7 +71,7 @@ box-shadow: rgba(76,44,205,0.5) 0px 5px 25px, rgba(0, 0, 0, 0.05) 0px 5px 25px;
 }
 .User #dontHaveAccount span a{
 	font-size: 1.2em;
-	color: #f77457;
+	color: #00EFD1;
 }
 .UserContainer #loginLogo{
 	position: absolute;
@@ -81,6 +81,7 @@ box-shadow: rgba(76,44,205,0.5) 0px 5px 25px, rgba(0, 0, 0, 0.05) 0px 5px 25px;
 	width:9em;
 	height:9em;
 }
+
 @media (min-width:720px){
 	.UserContainer{
 		height:100vh;

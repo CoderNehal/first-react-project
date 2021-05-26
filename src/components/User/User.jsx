@@ -87,6 +87,7 @@ const User = () => {
 					<input
 						type='text'
 						value={email}
+						className='email'
 						onChange={(e) => setemail(e.target.value)}
 					/>
 					<br />
