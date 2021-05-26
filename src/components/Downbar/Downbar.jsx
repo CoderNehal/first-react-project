@@ -31,7 +31,7 @@ const Downbar = () => {
 					</div>
 
 					<div className='icon'>
-						<NavLink exact activeStyle={{}} to='/user'>
+						<NavLink exact activeStyle={{}} to='/login'>
 							<img src={User} alt='' />
 						</NavLink>
 					</div>

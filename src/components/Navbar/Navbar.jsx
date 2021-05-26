@@ -44,7 +44,7 @@ const Navbar = (props) => {
 	};
 	const logInUser = () => {
 		
-		setredirect('/user');
+		setredirect('/login');
 	};
 	const logOutUser = () => {
 		localStorage.setItem('isLogged',false);
@@ -85,7 +85,7 @@ const Navbar = (props) => {
 					<p>Collection</p>
 				</div>
 				</NavLink>
-				<NavLink exact to='/user'>
+				<NavLink exact to='/login'>
 				<div className='SidebarItem'>
 					<img src={User} alt='' />
 					<p>User</p>

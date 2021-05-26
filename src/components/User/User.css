@@ -65,6 +65,14 @@ box-shadow: rgba(76,44,205,0.5) 0px 5px 25px, rgba(0, 0, 0, 0.05) 0px 5px 25px;
 	color: greenyellow;
 	margin-top: 3.5em;
 }
+.User #dontHaveAccount{
+	color: #000;
+	margin-top: 1em;
+}
+.User #dontHaveAccount span a{
+	font-size: 1.2em;
+	color: #f77457;
+}
 .UserContainer #loginLogo{
 	position: absolute;
 	top: 0.7em;

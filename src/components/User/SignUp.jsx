@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './User.css';
+import './SignUp.css'
 import backbtn from '../../images/user-Left-arrow.svg';
 import okKartLogo from '../../images/OkLogo.svg';
 import { fire } from '../../Firebase/Firebase';
 import $ from 'jquery';
 import Spinner from '../Loading/Loading';
-import { Redirect, useHistory, Link } from 'react-router-dom';
-const User = () => {
+import { Redirect, useHistory ,Link } from 'react-router-dom';
+const SignUp = () => {
 	let history = useHistory();
 	useEffect(() => {
 		authListner();
@@ -29,43 +30,45 @@ const User = () => {
 		});
 	};
 
-	const HandleLogin = () => {
+	const HandleSignUp = () => {
 		setLoading(true);
 		fire
 			.auth()
-			.signInWithEmailAndPassword(email, password)
+			.createUserWithEmailAndPassword(email, password)
 			.then((res) => {
 				const currentUser = fire.auth().currentUser;
 				setLoading(false);
-				if ('user' in res) {
-					setuser(currentUser);
-					localStorage.setItem('isLogged', 'true');
-					localStorage.setItem('username', 'OurKart user');
-					localStorage.setItem('email', email);
-					localStorage.setItem('userId', currentUser.displayName);
-					$('#Message').css('color', 'green');
-					$('#Message').text('Logged in successfully!');
-					console.log(currentUser.uid);
-					setInterval(() => {
-						setredirect('/');
-					}, 1000);
-				}
+				 if ('user' in res) {
+				 	setuser(currentUser);
+				 	localStorage.setItem('isLogged', 'true');
+				 	localStorage.setItem('username', 'OurKart user');
+				 	localStorage.setItem('email', email);
+				 	localStorage.setItem('userId', currentUser.displayName);
+				 	$('#Message').css('color', 'green');
+				 	$('#Message').text('account created  successfully!');
+				 	
+				 	setInterval(() => {
+				 		setredirect('/');
+				 	}, 1000);
+				 }
+               
 			})
 			.catch((e) => {
 				setLoading(false);
 				switch (e.code) {
-					case 'auth/user-not-found':
+					case 'auth/email-already-in-use':
 					case 'auth/invalid-email':
 						$('#Message').css('color', 'red');
 						$('#Message').text(e.message);
 						break;
-					case 'auth/wrong-password':
+					case 'auth/weak-password':
 						$('#Message').css('color', 'red');
 						$('#Message').text(e.message);
 						break;
 					default:
 						$('#Message').css('color', 'red');
 						$('#Message').text('Unknow error occured');
+                       
 				}
 			});
 	};
@@ -80,7 +83,7 @@ const User = () => {
 					<div className='userNav'>
 						<img src={backbtn} onClick={() => history.goBack()} alt='' />
 					</div>
-					<h3>Login</h3>
+					<h3>Sigup</h3>
 					<br />
 					<br />
 					<p>Email</p>
@@ -103,18 +106,18 @@ const User = () => {
 					<div className='submit'>
 						<input
 							type='button'
-							onClick={HandleLogin}
-							value='Log in'
+							onClick={HandleSignUp}
+							value='Sign up'
 							name=''
 							id=''
 						/>
 					</div>
 					<h5 id='Message'></h5>
-					<h5 id='dontHaveAccount'>Don't have account? <span><Link to='/signup'>Sign up</Link></span></h5>
+					<h5 id='dontHaveAccount'>Already have account? <span><Link to='/login'>Log in</Link></span></h5>
 				</div>
 			</div>
 		);
 	}
 };
 
-export default User;
+export default SignUp;

@@ -6,6 +6,7 @@ import Downbar from './components/Downbar/Downbar'
 import Search from './components/Search/Search'
 import Collection from './components/Collection/Collection'
 import User from './components/User/User'
+import SignUp from './components/User/SignUp'
 import ProductDescription from './components/ProductDescription/ProductDescription'
 // import upload from './upload/upload'
 import Cart from './components/Cart/Cart'
@@ -20,7 +21,8 @@ function App() {
       <Route path='/' exact component={Home} />
       <Route path='/search'  component={Search} />
       <Route path='/collection'  component={Collection} />
-      <Route path='/user'  component={User} />
+      <Route path='/login'  component={User} />
+      <Route path='/signup'  component={SignUp} />
       <Route path='/shop/:id' component={ProductDescription} />
       <Route path='/search/:id' component={Search} />
       <Route path='/cart' component={Cart} />
