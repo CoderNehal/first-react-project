@@ -106,13 +106,13 @@ const ProductDescription = (props) => {
 						</ul>
 						<button
 							className='buy'
-							// onClick={() =>
-							// 	localStorage.getItem('isLogged') == 'false'
-							// 		? setredirect('/login')
-							// 		:  AddToOrders()
-							// }
+							 onClick={() =>
+							 	localStorage.getItem('isLogged') == 'false'
+							 		? setredirect('/login')
+							 		:  AddToOrders()
+							 }
 
-							onClick={AddToOrders}>
+							>
 							<img src={tag} alt='' />
 							Buy now
 						</button>

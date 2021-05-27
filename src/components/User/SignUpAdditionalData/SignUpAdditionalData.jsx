@@ -79,6 +79,7 @@ const SignUpAdditionalData = ({ id }) => {
 						rows='5'></textarea>
 					<br />
 					<br />
+					<div className='forCityAndPin'>
 					City{' '}
 					<input
 						type='text'
@@ -86,6 +87,7 @@ const SignUpAdditionalData = ({ id }) => {
 						onChange={(e) => setcity(e.target.value)}
 						className='city'
 					/>
+					
 					Pincode{' '}
 					<input
 						type='number'
@@ -95,6 +97,7 @@ const SignUpAdditionalData = ({ id }) => {
 						onChange={handlePincode}
 						className='pincode'
 					/>
+					</div>
 					<br />
 					<br />
 					Gender

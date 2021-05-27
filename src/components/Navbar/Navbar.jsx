@@ -10,6 +10,8 @@ import { Link, Redirect } from 'react-router-dom';
 import Home from '../../images/Vector-3.svg';
 import Search from '../../images/Vector-2.svg';
 import Collection from '../../images/Vector-1.svg';
+import Orders from '../../images/Orders.svg';
+
 import User from '../../images/Vector.svg';
 import { NavLink } from 'react-router-dom';
 import { fire } from '../../Firebase/Firebase';
@@ -84,6 +86,12 @@ const Navbar = (props) => {
 						<p>Home</p>
 					</div>
 				</NavLink>
+				<NavLink exact to='/orders'>
+					<div className='SidebarItem'>
+						<img src={Orders} alt='' />
+						<p>My Orders</p>
+					</div>
+				</NavLink>
 				<NavLink exact to='/search'>
 					<div className='SidebarItem'>
 						<img src={Search} alt='' />
@@ -102,6 +110,8 @@ const Navbar = (props) => {
 						<p>User</p>
 					</div>
 				</NavLink>
+
+				
 			</div>
 			<p className='logOut noselect' onClick={logOutUser}>
 				Log Out
@@ -139,21 +149,23 @@ const Navbar = (props) => {
 					<img className='Logo' src={okLogo} alt='' />
 				</div>
 				<div className='NavbarRight'>
-					<div className='fav noselect' onClick={localStorage.getItem('isLogged')=='false' ? logInUser : null}>
-						<img
-							
-							src={fav}
-							alt=''
-						/>
+					<div
+						className='fav noselect'
+						onClick={
+							localStorage.getItem('isLogged') == 'false' ? logInUser : null
+						}>
+						<img src={fav} alt='' />
 					</div>
 					<div className='cart noselect'>
-					{localStorage.getItem('isLogged')=='false' ? <Link  to='/login'>
-					<img id='cart' src={cart} alt=''  />
-				</Link> : 
-					<Link  to='/cart'>
-					<img id='cart' src={cart} alt=''  />
-				</Link>}
-						
+						{localStorage.getItem('isLogged') == 'false' ? (
+							<Link to='/login'>
+								<img id='cart' src={cart} alt='' />
+							</Link>
+						) : (
+							<Link to='/cart'>
+								<img id='cart' src={cart} alt='' />
+							</Link>
+						)}
 					</div>
 				</div>
 			</div>
