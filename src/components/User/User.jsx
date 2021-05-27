@@ -42,10 +42,10 @@ const User = () => {
 					localStorage.setItem('isLogged', 'true');
 					localStorage.setItem('username', 'OurKart user');
 					localStorage.setItem('email', email);
-					localStorage.setItem('userId', currentUser.displayName);
+					localStorage.setItem('userId', currentUser.uid);
 					$('#Message').css('color', 'green');
 					$('#Message').text('Logged in successfully!');
-					console.log(currentUser.uid);
+					
 					setInterval(() => {
 						setredirect('/');
 					}, 1000);
@@ -69,6 +69,7 @@ const User = () => {
 				}
 			});
 	};
+	
 
 	if (Loading) {
 		return <Spinner />;

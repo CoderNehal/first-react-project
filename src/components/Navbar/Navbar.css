@@ -44,6 +44,7 @@
 }
 
 .NavbarRight .fav {
+	cursor: pointer;
 	height: 55px;
 	width: 68px;
 	display: flex;
