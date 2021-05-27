@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './User.css';
 import backbtn from '../../images/user-Left-arrow.svg';
 import okKartLogo from '../../images/OkLogo.svg';
-import { fire } from '../../Firebase/Firebase';
+import db, { fire } from '../../Firebase/Firebase';
 import $ from 'jquery';
 import Spinner from '../Loading/Loading';
 import { Redirect, useHistory, Link } from 'react-router-dom';
@@ -16,6 +16,13 @@ const User = () => {
 	const [user, setuser] = useState('');
 	const [Loading, setLoading] = useState(false);
 	const [redirect, setredirect] = useState(null);
+	// const [userInfo, setuserInfo] = useState({
+	// 	address: '',
+	// 	name: '',
+	// 	city: '',
+	// 	pincode: '',
+	// 	gender: '',
+	// });
 	if (redirect) {
 		return <Redirect to={redirect} />;
 	}
@@ -38,6 +45,18 @@ const User = () => {
 				const currentUser = fire.auth().currentUser;
 				setLoading(false);
 				if ('user' in res) {
+					db.collection('Address')
+						.doc(currentUser.uid)
+						.get()
+						.then((doc) => {
+							var data = doc.data();
+
+							localStorage.setItem('username', data.name);
+							localStorage.setItem('address', data.address);
+							localStorage.setItem('city', data.city);
+							localStorage.setItem('pincode', data.pincode);
+							localStorage.setItem('gender', data.gender);
+						});
 					setuser(currentUser);
 					localStorage.setItem('isLogged', 'true');
 					localStorage.setItem('username', 'OurKart user');
@@ -45,7 +64,7 @@ const User = () => {
 					localStorage.setItem('userId', currentUser.uid);
 					$('#Message').css('color', 'green');
 					$('#Message').text('Logged in successfully!');
-					
+
 					setInterval(() => {
 						setredirect('/');
 					}, 1000);
@@ -69,7 +88,6 @@ const User = () => {
 				}
 			});
 	};
-	
 
 	if (Loading) {
 		return <Spinner />;
@@ -112,7 +130,12 @@ const User = () => {
 						/>
 					</div>
 					<h5 id='Message'></h5>
-					<h5 id='dontHaveAccount'>Don't have account? <span><Link to='/signup'>Sign up</Link></span></h5>
+					<h5 id='dontHaveAccount'>
+						Don't have account?{' '}
+						<span>
+							<Link to='/signup'>Sign up</Link>
+						</span>
+					</h5>
 				</div>
 			</div>
 		);

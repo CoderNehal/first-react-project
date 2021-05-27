@@ -16,7 +16,7 @@ const SignUpAdditionalData = ({ id }) => {
 	const [Loading, setLoading] = useState(false);
 	const [redirect, setredirect] = useState(null);
 	const [city, setcity] = useState('');
-	const [pincode, setpincode] = useState(null);
+	const [pincode, setpincode] = useState(0);
 	const [gender, setgender] = useState('');
     if (redirect) {
 		return <Redirect to={redirect} />;
@@ -49,7 +49,11 @@ const SignUpAdditionalData = ({ id }) => {
 			});
 	};
 	const handlePincode = (e) => {
+		if(pincode<99999)
 		setpincode(e.target.value);
+		else{
+			alert('Pin with 6 digits')
+		}
 	};
 
 	if (Loading) {

@@ -11,7 +11,7 @@ import Home from '../../images/Vector-3.svg';
 import Search from '../../images/Vector-2.svg';
 import Collection from '../../images/Vector-1.svg';
 import Orders from '../../images/Orders.svg';
-
+// female user
 import User from '../../images/Vector.svg';
 import { NavLink } from 'react-router-dom';
 import { fire } from '../../Firebase/Firebase';
@@ -71,7 +71,13 @@ const Navbar = (props) => {
 				X
 			</div>
 			<div style={proFileStyle} className='profileDetails'>
-				<div style={proFileStyle} className='profilePic'></div>
+				<div
+					style={proFileStyle}
+					className={
+						localStorage.getItem('gender') == 'male'
+							? 'profilePic'
+							: 'profilePicFemale'
+					}></div>
 				<div style={proFileStyle} className='sidebarusername'>
 					{localStorage.getItem('username')}
 				</div>
@@ -110,8 +116,6 @@ const Navbar = (props) => {
 						<p>User</p>
 					</div>
 				</NavLink>
-
-				
 			</div>
 			<p className='logOut noselect' onClick={logOutUser}>
 				Log Out
