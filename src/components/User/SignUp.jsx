@@ -10,27 +10,14 @@ import { Redirect, useHistory, Link } from 'react-router-dom';
 import SignUpAdditionalData from './SignUpAdditionalData/SignUpAdditionalData';
 const SignUp = () => {
 	let history = useHistory();
-	useEffect(() => {
-		authListner();
-	}, []);
+	
 	const [email, setemail] = useState('');
 	const [password, setpassword] = useState('');
-	const [user, setuser] = useState('');
+	
 	const [Loading, setLoading] = useState(false);
-	const [redirect, setredirect] = useState(null);
+
 	const [showSAUD, setshowSAUD] = useState(false);
-	if (redirect) {
-		return <Redirect to={redirect} />;
-	}
-	const authListner = () => {
-		fire.auth().onAuthStateChanged((User) => {
-			if (User) {
-				setuser(User);
-			} else {
-				setuser('');
-			}
-		});
-	};
+	
 	
 	const HandleSignUp = () => {
 		 setLoading(true);
@@ -42,13 +29,14 @@ const SignUp = () => {
 		 		setLoading(false);
 		 		if ('user' in res) {
 					const currentUser = fire.auth().currentUser;
-		 			setuser(currentUser);
+		 			
 		 			localStorage.setItem('isLogged', 'true');
 		 			
 		 			localStorage.setItem('email', email);
 		 			localStorage.setItem('userId', currentUser.uid);
 		 			$('#Message').css('color', 'green');
 		 			$('#Message').text('account created  successfully!')
+				
 		 			setInterval(() => {
 		 				setshowSAUD(true)
 		 			}, 500);
@@ -72,7 +60,7 @@ const SignUp = () => {
 		 		}
 		 	});
 		
-		setshowSAUD(true);
+		
 	};
 
 	if (Loading) {

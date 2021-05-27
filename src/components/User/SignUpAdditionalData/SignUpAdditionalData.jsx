@@ -35,6 +35,7 @@ const SignUpAdditionalData = ({ id }) => {
 			})
 			.then(() => {
 				setLoading(false);
+				alert('Account created successfully! press ok to continue')
 				localStorage.setItem('username', name);
 				localStorage.setItem('address', Address);
 				localStorage.setItem('city', city);
@@ -125,13 +126,8 @@ const SignUpAdditionalData = ({ id }) => {
 							id=''
 						/>
 					</div>
-					<h5 id='Message'></h5>
-					<h5 id='dontHaveAccount'>
-						Already have account?{' '}
-						<span>
-							<Link to='/login'>Log in</Link>
-						</span>
-					</h5>
+					
+					
 				</div>
 			</div>
 		);
