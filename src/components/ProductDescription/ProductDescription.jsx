@@ -70,6 +70,37 @@ const ProductDescription = (props) => {
 			}
 		});
 	};
+	const AddToFavs = () => {
+		let Fav = [];
+		const favRef = db
+
+			.collection('Favourites')
+			.doc(localStorage.getItem('userId'));
+		favRef.get().then((doc) => {
+			if (doc.data() == undefined) {
+				//if no user found
+				Fav.push(id);
+				favRef.set({
+					favItems: Fav,
+				});
+			} else {
+				let alreadyOrdered = doc.data().favItems;
+				Fav = alreadyOrdered;
+				Fav.forEach((item) => {
+					if (item.match(id)) {
+						alert('Already present in Favourites');
+					} else {
+						alert("Added to Favourites")
+						Fav.push(id);
+						favRef.set({
+							favItems: Fav,
+						});
+						
+					}
+				});
+			}
+		});
+	};
 	if (Loading) {
 		return <Spinner />;
 	} else {
@@ -80,7 +111,7 @@ const ProductDescription = (props) => {
 						<img src={back} alt='' />
 					</button>
 					<div className='rightNav'>
-						<img src={heart} alt='' />
+						<img src={heart} onClick={AddToFavs} alt='' />
 						<img className='share' src={share} alt='' />
 					</div>
 				</div>
@@ -106,13 +137,11 @@ const ProductDescription = (props) => {
 						</ul>
 						<button
 							className='buy'
-							 onClick={() =>
-							 	localStorage.getItem('isLogged') == 'false'
-							 		? setredirect('/login')
-							 		:  AddToOrders()
-							 }
-
-							>
+							onClick={() =>
+								localStorage.getItem('isLogged') == 'false'
+									? setredirect('/login')
+									: AddToOrders()
+							}>
 							<img src={tag} alt='' />
 							Buy now
 						</button>

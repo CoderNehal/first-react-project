@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import './Orders.css';
+import './Fav.css';
 import Card from '../Search/card/Card';
 import db from '../../Firebase/Firebase';
 import Spinner from '../Loading/Loading';
 import backbtn from '../../images/user-Left-arrow.svg'
 import {Link,useHistory} from 'react-router-dom'
-const Orders = () => {
+const Fav = () => {
 	let history = useHistory();
-	const [orders, setorders] = useState([]);
+	const [Favs, setFavs] = useState([]);
 	const [Loading, setLoading] = useState(true);
-	let orderData = [];
+	let favData = [];
 	useEffect(() => {
-		db.collection('orders')
+		db.collection('Favourites')
 			.doc(localStorage.getItem('userId'))
 			.get()
 			.then((doc) => {
-				var data = doc.data().orders;
+				var data = doc.data().favItems;
 				
 				data.forEach((productId) => {
 					db.collection('products')
@@ -24,9 +24,9 @@ const Orders = () => {
 						.then((doc) => {
 							const id =doc.id;
 							const data = {id,...doc.data()}
-							orderData.push(data);
+							favData.push(data);
 							setLoading(false);
-							setorders(orderData);
+							setFavs(favData);
 						});
 				});
 			});
@@ -34,15 +34,14 @@ const Orders = () => {
 	
 	let loadThis = (
 		<>
-			{orders.length != 0 ? (
-				orders.map((product) => {
+			{Favs.length != 0 ? (
+				Favs.map((product) => {
 					return (
-						<div className='OrderhContainer'>
-							<div className='OrderNav'>
+						<div className='FavContainer'>
+							<div className='FavNav'>
 						<img src={backbtn} onClick={() => history.goBack()} alt='' />
-
-						</div>
-							<h3>Orders</h3>
+					</div>
+							<h3>Favourites</h3>
 							<Link to={`/shop/${product.id}`} >
 							<Card
 								key={product.name}
@@ -63,4 +62,4 @@ const Orders = () => {
 	return <>{Loading ? <Spinner /> : loadThis}</>;
 };
 
-export default Orders;
+export default Fav;

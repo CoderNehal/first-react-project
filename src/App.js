@@ -11,6 +11,7 @@ import ProductDescription from './components/ProductDescription/ProductDescripti
 // import upload from './upload/upload'
 import Cart from './components/Cart/Cart'
 import Orders from './components/Orders/Orders'
+import Fav from './components/Fav/Fav'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
       <Route path='/search/:id' component={Search} />
       <Route path='/cart' component={Cart} />
       <Route path='/orders' component={Orders} />
+      <Route path='/favourites' component={Fav} />
     </Switch>
     <Downbar />
    

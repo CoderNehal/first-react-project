@@ -153,12 +153,17 @@ const Navbar = (props) => {
 					<img className='Logo' src={okLogo} alt='' />
 				</div>
 				<div className='NavbarRight'>
-					<div
-						className='fav noselect'
-						onClick={
-							localStorage.getItem('isLogged') == 'false' ? logInUser : null
-						}>
-						<img src={fav} alt='' />
+					<div className='fav noselect'>
+						
+						{localStorage.getItem('isLogged') == 'false' ? (
+							<Link to='/login'>
+								<img src={fav} alt='' />
+							</Link>
+						) : (
+							<Link to='/favourites'>
+								<img src={fav} alt='' />
+							</Link>
+						)}
 					</div>
 					<div className='cart noselect'>
 						{localStorage.getItem('isLogged') == 'false' ? (
