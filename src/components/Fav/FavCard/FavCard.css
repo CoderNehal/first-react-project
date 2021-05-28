@@ -1,0 +1,110 @@
+.searchCard {
+	display: flex;
+	height: 11.88rem;
+	position: relative;
+	margin: 0 0.7em;
+	cursor: pointer;
+}
+.searchCard .delete{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position:absolute;
+	width: 2em;
+	height: 2em;
+	border-radius: 50% ;
+	background:red;
+	color:#fff;
+	right: 0;
+	top: -2em;
+}
+.searchCard .cardImg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+	height: 100%;
+	width: 35%;
+}
+.searchCard .cardImg img {
+	height: auto;
+	max-height: 100%;
+	width: auto;
+	max-width: 100%;
+}
+.searchCard .cardInfo {
+	margin: 0;
+	padding-left: 8px;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 65%;
+}
+.searchCard .cardInfo .productName {
+	font-weight: 500;
+	color: #000;
+
+	width: 100%;
+	height: auto;
+}
+.searchCard .cardInfo .productDescription {
+	position: relative;
+}
+.searchCard .cardInfo .productDescription .price {
+	margin-top: 4px;
+	color: rgba(77, 44, 205, 1);
+	font-size: 1.3em;
+}
+.searchCard .cardInfo .productDescription .ActualPrice {
+	font-size: 0.8em;
+	margin-left: 10px;
+	margin-top: 0px;
+	text-decoration: line-through;
+	color: rgba(0, 0, 0, 0.5);
+}
+.searchCard .cardInfo .productDescription .OFF {
+	font-size: 1em;
+	margin-left: 10px;
+	color: #43e902;
+	font-weight: bolder;
+	font-family: 'Times New Roman', Times, serif;
+
+	word-spacing: -0.2em;
+}
+.searchCard .cardInfo .productDescription {
+	overflow: hidden;
+	width: 100%;
+	height: auto;
+}
+.searchCard .cardInfo .productDescription ul {
+	opacity: 0.7;
+	padding-top: 0.5em;
+	padding-left: 1em;
+}
+.searchCard .cardInfo .productDescription ul li {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+.searchCard .cardInfo .productDescription ul li::before {
+	list-style-type: disc;
+	content: '\2022';
+	color: rgba(0, 0, 0, 1);
+	font-weight: bolder;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+}
+
+.searchCard .cardInfo  p {
+	text-align: right;
+	color: #37caff;
+	margin-bottom: -10px;
+}
+
+.searchCard .cardInfo  p:hover{
+    color: red;
+}
+.searchCard .cardInfo .productDescription ul{
+	color: #000;
+}

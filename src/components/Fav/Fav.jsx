@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Fav.css';
-import Card from '../Search/card/Card';
+import Card from './FavCard/FavCard';
 import db from '../../Firebase/Firebase';
 import Spinner from '../Loading/Loading';
 import backbtn from '../../images/user-Left-arrow.svg'
@@ -30,36 +30,47 @@ const Fav = () => {
 						});
 				});
 			});
+			setLoading(false)
 	}, []);
-	
+	const DeleteThisItem =(id) =>{
+		const index = Favs.indexOf(id)
+		let favs = Favs
+		if (index > -1) {
+			favs.splice(index, 1);
+		  }
+		console.log(favs,index)
+	}
 	let loadThis = (
-		<>
+		<div className='FavContainer'>
+			<div className='FavNav'>
+						<img src={backbtn} onClick={() => history.goBack()} alt='' />
+					</div>
+					<h3>Favourites</h3>
 			{Favs.length != 0 ? (
 				Favs.map((product) => {
 					return (
-						<div className='FavContainer'>
-							<div className='FavNav'>
-						<img src={backbtn} onClick={() => history.goBack()} alt='' />
-					</div>
-							<h3>Favourites</h3>
-							<Link to={`/shop/${product.id}`} >
+						<div>
+							
+							
+							
 							<Card
 								key={product.name}
 								img={product.img}
 								name={product.name}
 								price={product.price}
 								data={product}
+								DeleteThisItem={DeleteThisItem}
 							/>
-							</Link>
+						
 						</div>
 					);
 				})
 			) : (
-				<h1>order something {localStorage.getItem('userId')} </h1>
+				<h2 style={{display:'flex',justifyContent:'center',alignItems:'center',height:'80vh'}}>favourite something {localStorage.getItem('username') } :) </h2>
 			)}
-		</>
+		</div>
 	);
-	return <>{Loading ? <Spinner /> : loadThis}</>;
+	return <>{Loading ? <Spinner /> :  loadThis}</>;
 };
 
 export default Fav;

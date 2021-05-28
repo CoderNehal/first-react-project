@@ -77,27 +77,45 @@ const ProductDescription = (props) => {
 			.collection('Favourites')
 			.doc(localStorage.getItem('userId'));
 		favRef.get().then((doc) => {
-			if (doc.data() == undefined) {
+			if (doc.data() == undefined ) {
+				console.log(doc.data())
 				//if no user found
 				Fav.push(id);
 				favRef.set({
 					favItems: Fav,
 				});
 			} else {
-				let alreadyOrdered = doc.data().favItems;
-				Fav = alreadyOrdered;
-				Fav.forEach((item) => {
-					if (item.match(id)) {
-						alert('Already present in Favourites');
-					} else {
-						alert("Added to Favourites")
-						Fav.push(id);
-						favRef.set({
-							favItems: Fav,
-						});
-						
-					}
-				});
+				let alreadyFav = doc.data().favItems;
+				Fav = alreadyFav;
+				// Fav.forEach((item) => {
+				// 	if (item === id) {
+				// 		alert('Already present in Favourites');
+				// 	} else {
+				// 		alert('Added to Favourites');
+				// 		Fav.push(id);
+				// 		favRef.set({
+				// 			favItems: Fav,
+				// 		});
+				// 	}
+				// });
+				if (new RegExp(Fav.join('|')).test(id)) {
+					
+					
+					alert('Already Fav ❤️');
+					console.log(new RegExp(Fav.join('|')))
+				} else if(Fav.length==0){
+					alert('Added to Favourites ❤️');
+					Fav.push(id);
+					favRef.set({
+						favItems: Fav,
+					});
+				}else {
+					alert('Added to Favourites ❤️');
+					Fav.push(id);
+					favRef.set({
+						favItems: Fav,
+					});
+				}
 			}
 		});
 	};
