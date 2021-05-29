@@ -4,30 +4,30 @@ import {useHistory} from 'react-router-dom'
 import './CartItems.css'
 import {Link} from 'react-router-dom'
 
-const  CartItems = ({id,qt}) =>{
+const  CartItems = ({data}) =>{
     let userId = localStorage.getItem('userId');
     
     const databseRef =db.collection('cart')
     .doc(userId)
     .collection('cartItems')
-    .doc(id)
-    const [NumberOfItems, setNumberOfItems] = useState(qt)
+    .doc(data.id)
+    const [NumberOfItems, setNumberOfItems] = useState(data.qt)
 // eslint-disable-next-line no-unused-expressions
-const Localqt = Number(qt) +1
+const Localqt = Number(data.qt) +1
 console.log(Localqt);
 const handleAction= () =>{
     
 		db.collection('cart')
 			.doc(userId)
 			.collection('cartItems')
-            .doc(id)
+            .doc(data.id)
 			.set({
                 qt:Localqt
             }).then(
                 setNumberOfItems(Localqt)
             )
 }
-console.log(id)
+console.log(data.id)
     return (
         <div className='CartItems'>
           

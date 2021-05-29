@@ -2,38 +2,25 @@ import React, { useEffect, useState } from 'react';
 import './Cart.css';
 import leftArrow from '../../images/left-arrow.svg';
 import CartItems from './CartItems/CartItems';
-import { Link,useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import db from '../../Firebase/Firebase';
 function Cart() {
 	const [data, setdata] = useState([]);
-	
+	const [LoadNow, setLoadNow] = useState(false)
+
 	let userId = localStorage.getItem('userId');
 	let history = useHistory();
 	useEffect(() => {
-		let data = [];
-		db.collection('cart')
-			.doc(userId)
-			.collection('cartItems')
-			.get()
-			.then((snapshot) => {
-				snapshot.docs.forEach((doc) => {
-					
-					data.push(doc.data().cartItems);
-				});
-			});
+		
 
-		setdata(data);
-		console.log(data);
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-
-
-//This fookin are not rednerig lets c what happens
+	//This fookin are not rednerig lets c what happens
 	// eslint-disable-next-line no-unused-vars
 	let cartItemsToLoad = (
 		<div className='cartItems'>
-			{data
+			{data.length!=0
 				? data.map((product) => {
 						return (
 							<Link to={`/shop/${product.id}`}>
@@ -41,7 +28,7 @@ function Cart() {
 							</Link>
 						);
 				  })
-				: alert('dfgdfd')}
+				: <h1>fdfd</h1>}
 		</div>
 	);
 
@@ -53,11 +40,9 @@ function Cart() {
 				<div className='emptyDiv'></div>
 			</div>
 			<h4 id='MyCart'>My Cart</h4>
-			 <div className='cartItems'>
-				{/* {cartItemsToLoad} */}
-				<CartItems id='FHAS90Or8WnXqFKoEiYu' qt='1' />
-				
-			 </div> 
+			
+				 {cartItemsToLoad}
+		
 			<div className='checkout'>
 				<h4>Order Info</h4>
 				<div className='subtotal'>

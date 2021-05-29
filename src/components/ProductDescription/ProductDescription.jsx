@@ -77,8 +77,8 @@ const ProductDescription = (props) => {
 			.collection('Favourites')
 			.doc(localStorage.getItem('userId'));
 		favRef.get().then((doc) => {
-			if (doc.data() == undefined ) {
-				console.log(doc.data())
+			if (doc.data() == undefined) {
+				console.log(doc.data());
 				//if no user found
 				Fav.push(id);
 				favRef.set({
@@ -87,29 +87,17 @@ const ProductDescription = (props) => {
 			} else {
 				let alreadyFav = doc.data().favItems;
 				Fav = alreadyFav;
-				// Fav.forEach((item) => {
-				// 	if (item === id) {
-				// 		alert('Already present in Favourites');
-				// 	} else {
-				// 		alert('Added to Favourites');
-				// 		Fav.push(id);
-				// 		favRef.set({
-				// 			favItems: Fav,
-				// 		});
-				// 	}
-				// });
+
 				if (new RegExp(Fav.join('|')).test(id)) {
-					
-					
 					alert('Already Fav ❤️');
-					console.log(new RegExp(Fav.join('|')))
-				} else if(Fav.length==0){
+					console.log(new RegExp(Fav.join('|')));
+				} else if (Fav.length == 0) {
 					alert('Added to Favourites ❤️');
 					Fav.push(id);
 					favRef.set({
 						favItems: Fav,
 					});
-				}else {
+				} else {
 					alert('Added to Favourites ❤️');
 					Fav.push(id);
 					favRef.set({
@@ -118,6 +106,54 @@ const ProductDescription = (props) => {
 				}
 			}
 		});
+	};
+
+	const AddToCart = () => {
+		let cart = [];
+
+		const cartRef = db.collection('cart').doc(localStorage.getItem('userId'));
+		cartRef
+			.get()
+			.then((doc) => {
+				
+				if (doc.data() == undefined) {
+					//if no user found
+					cart.push({ id: id, qt: 1 });
+					
+					cartRef.set({
+						cartItems: [{ id: id, qt: 1 }],
+					});
+				}
+			})
+			
+			.then(() => {
+				cartRef.get().then((doc)=>{
+					cart = doc.data().cartItems
+					var finalArray = cart.map(function (obj) {
+						return obj.id;
+					});
+					
+					 if (finalArray.includes(id)) {
+				
+						 let indx = finalArray.indexOf(id);
+						 let currentQt = cart[indx].qt
+						 cart.push({
+							 id: id,
+							 qt: currentQt + 1,
+						 });
+						 cartRef.set({
+							 cartItems: cart,
+						 });
+					 } else {
+						 cart.push({ id: id, qt: 1 });
+						 cartRef.set({
+							 cartItems: cart,
+						 });
+					 }
+
+				})
+				
+			});
 	};
 	if (Loading) {
 		return <Spinner />;
@@ -168,7 +204,7 @@ const ProductDescription = (props) => {
 							onClick={() =>
 								localStorage.getItem('isLogged') == 'false'
 									? setredirect('/login')
-									: null
+									: AddToCart()
 							}>
 							<img src={box} alt='' />
 							Add to box

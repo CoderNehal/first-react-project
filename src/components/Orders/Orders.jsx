@@ -23,10 +23,11 @@ const Orders = () => {
 						.get()
 						.then((doc) => {
 							const id =doc.id;
-							const data = {id,...doc.data()}
+							let data = {id,...doc.data()}
 							orderData.push(data);
-							setLoading(false);
+						
 							setorders(orderData);
+							setLoading(false);
 						});
 				});
 			});
@@ -34,8 +35,11 @@ const Orders = () => {
 	
 	let loadThis = (
 		<>
-			{orders.length != 0 ? (
+			{
+			
+			orders.length != 0 ? (
 				orders.map((product) => {
+					console.log(product)
 					return (
 						<div className='OrderhContainer'>
 							<div className='OrderNav'>
