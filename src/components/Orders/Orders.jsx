@@ -31,6 +31,7 @@ const Orders = () => {
 						});
 				});
 			});
+			setLoading(false);
 	}, []);
 	
 	let loadThis = (
@@ -60,7 +61,12 @@ const Orders = () => {
 					);
 				})
 			) : (
-				<h1>order something {localStorage.getItem('userId')} </h1>
+				<h3 style={{
+					display: 'flex',
+					alignItems: 'center',
+					height: '80vh',
+					padding:'0 10vw'
+				}}>order something {localStorage.getItem('username')} </h3>
 			)}
 		</>
 	);

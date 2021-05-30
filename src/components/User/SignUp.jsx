@@ -3,64 +3,67 @@ import './User.css';
 import './SignUp.css';
 import backbtn from '../../images/user-Left-arrow.svg';
 import okKartLogo from '../../images/OkLogo.svg';
-import { fire } from '../../Firebase/Firebase';
+import db, { fire } from '../../Firebase/Firebase';
 import $ from 'jquery';
 import Spinner from '../Loading/Loading';
 import { Redirect, useHistory, Link } from 'react-router-dom';
 import SignUpAdditionalData from './SignUpAdditionalData/SignUpAdditionalData';
 const SignUp = () => {
 	let history = useHistory();
-	
+
 	const [email, setemail] = useState('');
 	const [password, setpassword] = useState('');
-	
+
 	const [Loading, setLoading] = useState(false);
 
 	const [showSAUD, setshowSAUD] = useState(false);
-	
-	
+
 	const HandleSignUp = () => {
-		 setLoading(true);
-		 fire
-		 	.auth()
-		 	.createUserWithEmailAndPassword(email, password)
-		 	.then((res) => {
-		 		
-		 		setLoading(false);
-		 		if ('user' in res) {
+		setLoading(true);
+		fire
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then((res) => {
+				setLoading(false);
+				if ('user' in res) {
 					const currentUser = fire.auth().currentUser;
-		 			
-		 			localStorage.setItem('isLogged', 'true');
-		 			
-		 			localStorage.setItem('email', email);
-		 			localStorage.setItem('userId', currentUser.uid);
-		 			$('#Message').css('color', 'green');
-		 			$('#Message').text('account created  successfully!')
-				
-		 			setInterval(() => {
-		 				setshowSAUD(true)
-		 			}, 500);
-		 		}
-		 	})
-		 	.catch((e) => {
-		 		setLoading(false);
-		 		switch (e.code) {
-		 			case 'auth/email-already-in-use':
-		 			case 'auth/invalid-email':
-		 				$('#Message').css('color', 'red');
-		 				$('#Message').text(e.message);
-		 				break;
-		 			case 'auth/weak-password':
-		 				$('#Message').css('color', 'red');
-		 				$('#Message').text(e.message);
-		 				break;
-		 			default:
-		 				$('#Message').css('color', 'red');
-		 				$('#Message').text('Unknow error occured');
-		 		}
-		 	});
-		
-		
+
+					localStorage.setItem('isLogged', 'true');
+					localStorage.setItem('email', email);
+					localStorage.setItem('userId', currentUser.uid);
+					db.collection('Favourites').doc(localStorage.getItem('userId')).set({
+						favItems: [],
+					});
+					db.collection('orders')
+								.doc(localStorage.getItem('userId'))
+								.set({
+									orders: [],
+								});
+					$('#Message').css('color', 'green');
+					$('#Message').text('account created  successfully!');
+
+					setInterval(() => {
+						setshowSAUD(true);
+					}, 500);
+				}
+			})
+			.catch((e) => {
+				setLoading(false);
+				switch (e.code) {
+					case 'auth/email-already-in-use':
+					case 'auth/invalid-email':
+						$('#Message').css('color', 'red');
+						$('#Message').text(e.message);
+						break;
+					case 'auth/weak-password':
+						$('#Message').css('color', 'red');
+						$('#Message').text(e.message);
+						break;
+					default:
+						$('#Message').css('color', 'red');
+						$('#Message').text('Unknow error occured');
+				}
+			});
 	};
 
 	if (Loading) {

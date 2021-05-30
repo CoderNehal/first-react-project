@@ -56,12 +56,22 @@ const User = () => {
 							localStorage.setItem('city', data.city);
 							localStorage.setItem('pincode', data.pincode);
 							localStorage.setItem('gender', data.gender);
+							db.collection('Favourites')
+								.doc(localStorage.getItem('userId'))
+								.set({
+									favItems: [],
+								});
+								db.collection('orders')
+								.doc(localStorage.getItem('userId'))
+								.set({
+									orders: [],
+								});
 						});
 					setuser(currentUser);
-					localStorage.setItem('isLogged', 'true');
-					localStorage.setItem('username', 'OurKart user');
-					localStorage.setItem('email', email);
-					localStorage.setItem('userId', currentUser.uid);
+					// localStorage.setItem('isLogged', 'true');
+					// localStorage.setItem('username', 'OurKart user');
+					// localStorage.setItem('email', email);
+					// localStorage.setItem('userId', currentUser.uid);
 					$('#Message').css('color', 'green');
 					$('#Message').text('Logged in successfully!');
 

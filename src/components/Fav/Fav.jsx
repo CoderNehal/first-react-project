@@ -3,12 +3,13 @@ import './Fav.css';
 import Card from './FavCard/FavCard';
 import db from '../../Firebase/Firebase';
 import Spinner from '../Loading/Loading';
-import backbtn from '../../images/user-Left-arrow.svg'
-import {Link,useHistory} from 'react-router-dom'
+import backbtn from '../../images/user-Left-arrow.svg';
+import { Link, useHistory } from 'react-router-dom';
 const Fav = () => {
 	let history = useHistory();
 	const [Favs, setFavs] = useState([]);
 	const [Loading, setLoading] = useState(true);
+	const [toReRender, settoReRender] = useState(false);
 	let favData = [];
 	useEffect(() => {
 		db.collection('Favourites')
@@ -16,43 +17,68 @@ const Fav = () => {
 			.get()
 			.then((doc) => {
 				var data = doc.data().favItems;
-				
+
 				data.forEach((productId) => {
 					db.collection('products')
 						.doc(productId)
 						.get()
 						.then((doc) => {
-							const id =doc.id;
-							const data = {id,...doc.data()}
+							const id = doc.id;
+							const data = { id, ...doc.data() };
 							favData.push(data);
+
 							setLoading(false);
 							setFavs(favData);
 						});
 				});
 			});
-			setLoading(false)
+		setLoading(false);
 	}, []);
-	const DeleteThisItem =(id) =>{
-		const index = Favs.indexOf(id)
-		let favs = Favs
-		if (index > -1) {
-			favs.splice(index, 1);
-		  }
-		console.log(favs,index)
-	}
+	const DeleteThisItem = (id) => {
+		let fav = Favs;
+		var finalArray = fav.map(function (obj) {
+			return obj.id;
+		});
+
+		if (finalArray.includes(id)) {
+			const indx = finalArray.indexOf(id);
+			finalArray.splice(indx, 1);
+			console.log(finalArray);
+			alert('Removed successfully');
+			db.collection('Favourites')
+				.doc(localStorage.getItem('userId'))
+				.set({
+					favItems: finalArray,
+				})
+				.then(()=>{
+					window.location.reload(true)
+					finalArray.forEach((productId) => {
+						db.collection('products')
+							.doc(productId)
+							.get()
+							.then((doc) => {
+								const id = doc.id;
+								const data = { id, ...doc.data() };
+								favData.push(data);
+
+								setLoading(false);
+								setFavs(favData);
+							});
+					})}
+				);
+		}
+	};
+	console.log(Favs)
 	let loadThis = (
 		<div className='FavContainer'>
 			<div className='FavNav'>
-						<img src={backbtn} onClick={() => history.goBack()} alt='' />
-					</div>
-					<h3>Favourites</h3>
+				<img src={backbtn} onClick={() => history.goBack()} alt='' />
+			</div>
+			<h3>Favourites</h3>
 			{Favs.length != 0 ? (
 				Favs.map((product) => {
 					return (
 						<div>
-							
-							
-							
 							<Card
 								key={product.name}
 								img={product.img}
@@ -61,16 +87,24 @@ const Fav = () => {
 								data={product}
 								DeleteThisItem={DeleteThisItem}
 							/>
-						
 						</div>
 					);
 				})
 			) : (
-				<h2 style={{display:'flex',justifyContent:'center',alignItems:'center',height:'80vh'}}>favourite something {localStorage.getItem('username') } :) </h2>
+				<h4
+					style={{
+						display: 'flex',
+						
+						alignItems: 'center',
+						height: '100%',
+						padding:'7em 10vw'
+					}}>
+					favourite something {localStorage.getItem('username')} {' :)'}
+				</h4>
 			)}
 		</div>
 	);
-	return <>{Loading ? <Spinner /> :  loadThis}</>;
+	return <>{Loading ? <Spinner /> : loadThis}</>;
 };
 
 export default Fav;

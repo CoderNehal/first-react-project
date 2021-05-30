@@ -60,6 +60,7 @@ const ProductDescription = (props) => {
 				ordersRef.set({
 					orders: orders,
 				});
+				alert('Payment successful!')
 			} else {
 				let alreadyOrdered = doc.data().orders;
 				orders = alreadyOrdered;
@@ -67,6 +68,7 @@ const ProductDescription = (props) => {
 				ordersRef.set({
 					orders: orders,
 				});
+				alert('Payment successful!')
 			}
 		});
 	};
@@ -78,8 +80,9 @@ const ProductDescription = (props) => {
 			.doc(localStorage.getItem('userId'));
 		favRef.get().then((doc) => {
 			if (doc.data() == undefined) {
-				console.log(doc.data());
+				// console.log(doc.data());
 				//if no user found
+				alert('Added to Favourites ❤️');
 				Fav.push(id);
 				favRef.set({
 					favItems: Fav,
@@ -88,15 +91,15 @@ const ProductDescription = (props) => {
 				let alreadyFav = doc.data().favItems;
 				Fav = alreadyFav;
 
-				if (new RegExp(Fav.join('|')).test(id)) {
-					alert('Already Fav ❤️');
-					console.log(new RegExp(Fav.join('|')));
-				} else if (Fav.length == 0) {
+				if (doc.data().favItems.length == 0) {
 					alert('Added to Favourites ❤️');
 					Fav.push(id);
 					favRef.set({
 						favItems: Fav,
 					});
+				} else if (new RegExp(Fav.join('|')).test(id)) {
+					alert('Already Fav ❤️');
+					// console.log(new RegExp(Fav.join('|')));
 				} else {
 					alert('Added to Favourites ❤️');
 					Fav.push(id);
@@ -115,44 +118,40 @@ const ProductDescription = (props) => {
 		cartRef
 			.get()
 			.then((doc) => {
-				
 				if (doc.data() == undefined) {
 					//if no user found
 					cart.push({ id: id, qt: 1 });
-					
+
 					cartRef.set({
 						cartItems: [{ id: id, qt: 1 }],
 					});
 				}
 			})
-			
+
 			.then(() => {
-				cartRef.get().then((doc)=>{
-					cart = doc.data().cartItems
+				cartRef.get().then((doc) => {
+					cart = doc.data().cartItems;
 					var finalArray = cart.map(function (obj) {
 						return obj.id;
 					});
-					
-					 if (finalArray.includes(id)) {
-				
-						 let indx = finalArray.indexOf(id);
-						 let currentQt = cart[indx].qt
-						 cart.push({
-							 id: id,
-							 qt: currentQt + 1,
-						 });
-						 cartRef.set({
-							 cartItems: cart,
-						 });
-					 } else {
-						 cart.push({ id: id, qt: 1 });
-						 cartRef.set({
-							 cartItems: cart,
-						 });
-					 }
 
-				})
-				
+					if (finalArray.includes(id)) {
+						let indx = finalArray.indexOf(id);
+						let currentQt = cart[indx].qt;
+						cart.push({
+							id: id,
+							qt: currentQt + 1,
+						});
+						cartRef.set({
+							cartItems: cart,
+						});
+					} else {
+						cart.push({ id: id, qt: 1 });
+						cartRef.set({
+							cartItems: cart,
+						});
+					}
+				});
 			});
 	};
 	if (Loading) {
