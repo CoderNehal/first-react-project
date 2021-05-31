@@ -25,52 +25,59 @@ const Orders = () => {
 							const id =doc.id;
 							let data = {id,...doc.data()}
 							orderData.push(data);
-						
+							// console.log(data)
 							setorders(orderData);
-							setLoading(false);
+						
 						});
 				});
 			});
-			setLoading(false);
+			
+			setInterval(() => {
+				setLoading(false);
+			},3000)
 	}, []);
 	
 	let loadThis = (
 		<>
-			{
-			
-			orders.length != 0 ? (
-				orders.map((product) => {
-					console.log(product)
-					return (
-						<div className='OrderhContainer'>
-							<div className='OrderNav'>
-						<img src={backbtn} onClick={() => history.goBack()} alt='' />
-
-						</div>
-							<h3>Orders</h3>
-							<Link to={`/shop/${product.id}`} >
-							<Card
-								key={product.name}
-								img={product.img}
-								name={product.name}
-								price={product.price}
-								data={product}
-							/>
-							</Link>
-						</div>
-					);
-				})
+		{/* Keep these divs out of map else they will be repeated */}
+	  
+		  <div className='OrderhContainer'>
+			<div className='OrderNav'>
+			  <img src={backbtn} onClick={() => history.goBack()} alt='' />
+			</div>
+			<h3>Orders</h3>
+			{orders.length !== 0 ? (
+			  orders.map((product) => {
+				 
+				return (
+				  <div key={product.id}>
+					<Link to={`/shop/${product.id}`}>
+					  <Card
+						img={product.img}
+						name={product.name}
+						price={product.price}
+						data={product}
+					  />
+					</Link>
+				  </div>
+				);
+			  })
 			) : (
-				<h3 style={{
-					display: 'flex',
-					alignItems: 'center',
-					height: '80vh',
-					padding:'0 10vw'
-				}}>order something {localStorage.getItem('username')} </h3>
+			  <h3
+				style={{
+				  display: 'flex',
+				  alignItems: 'center',
+				  height: '80vh',
+				  padding: '0 10vw',
+				}}
+			  >
+				order something {localStorage.getItem('username')}{' '}
+			  </h3>
 			)}
+		  </div>
 		</>
-	);
-	return <>{Loading ? <Spinner /> : loadThis}</>;
+	  );	
+	return <>{Loading ? <Spinner /> :loadThis}</>;
 };
 
 export default Orders;

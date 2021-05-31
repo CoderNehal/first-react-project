@@ -34,11 +34,12 @@ const SignUp = () => {
 					db.collection('Favourites').doc(localStorage.getItem('userId')).set({
 						favItems: [],
 					});
-					db.collection('orders')
-								.doc(localStorage.getItem('userId'))
-								.set({
-									orders: [],
-								});
+					db.collection('orders').doc(localStorage.getItem('userId')).set({
+						orders: [],
+					});
+					db.collection('cart').doc(localStorage.getItem('userId')).set({
+						cartItems: [],
+					});
 					$('#Message').css('color', 'green');
 					$('#Message').text('account created  successfully!');
 

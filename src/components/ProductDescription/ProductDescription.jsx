@@ -60,7 +60,6 @@ const ProductDescription = (props) => {
 				ordersRef.set({
 					orders: orders,
 				});
-				alert('Payment successful!')
 			} else {
 				let alreadyOrdered = doc.data().orders;
 				orders = alreadyOrdered;
@@ -68,7 +67,6 @@ const ProductDescription = (props) => {
 				ordersRef.set({
 					orders: orders,
 				});
-				alert('Payment successful!')
 			}
 		});
 	};
@@ -112,47 +110,34 @@ const ProductDescription = (props) => {
 	};
 
 	const AddToCart = () => {
-		let cart = [];
-
 		const cartRef = db.collection('cart').doc(localStorage.getItem('userId'));
-		cartRef
-			.get()
-			.then((doc) => {
-				if (doc.data() == undefined) {
-					//if no user found
-					cart.push({ id: id, qt: 1 });
 
-					cartRef.set({
-						cartItems: [{ id: id, qt: 1 }],
-					});
-				}
-			})
-
-			.then(() => {
-				cartRef.get().then((doc) => {
-					cart = doc.data().cartItems;
-					var finalArray = cart.map(function (obj) {
-						return obj.id;
-					});
-
-					if (finalArray.includes(id)) {
-						let indx = finalArray.indexOf(id);
-						let currentQt = cart[indx].qt;
-						cart.push({
-							id: id,
-							qt: currentQt + 1,
-						});
-						cartRef.set({
-							cartItems: cart,
-						});
-					} else {
-						cart.push({ id: id, qt: 1 });
-						cartRef.set({
-							cartItems: cart,
-						});
-					}
-				});
+		cartRef.get().then((doc) => {
+			let cartItemsFromFB = doc.data().cartItems;
+			let localCartItems = [];
+			let finalArray = cartItemsFromFB.map(function (obj) {
+				return obj.id;
 			});
+			if (cartItemsFromFB.length === 0) {
+				localCartItems.push({ id: id, qt: 1 });
+				console.log(localCartItems);
+				cartRef.set({
+					cartItems: localCartItems,
+				});
+			}
+			if (finalArray.includes(id) ) {
+				let indx = finalArray.indexOf(id);
+				let localQt = cartItemsFromFB[indx].qt;
+				localCartItems = cartItemsFromFB;
+				localCartItems[indx].qt = localQt + 1;
+				// cartRef.update({
+				// 	cartItems: {
+				// 		id: id,
+				// 		qt: localQt,
+				// 	},
+				// });
+			}
+		});
 	};
 	if (Loading) {
 		return <Spinner />;

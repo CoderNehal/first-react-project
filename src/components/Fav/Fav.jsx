@@ -27,12 +27,13 @@ const Fav = () => {
 							const data = { id, ...doc.data() };
 							favData.push(data);
 
-							setLoading(false);
 							setFavs(favData);
 						});
 				});
 			});
-		setLoading(false);
+		setInterval(() => {
+			setLoading(false);
+		}, 3000);
 	}, []);
 	const DeleteThisItem = (id) => {
 		let fav = Favs;
@@ -50,8 +51,8 @@ const Fav = () => {
 				.set({
 					favItems: finalArray,
 				})
-				.then(()=>{
-					window.location.reload(true)
+				.then(() => {
+					window.location.reload(true);
 					finalArray.forEach((productId) => {
 						db.collection('products')
 							.doc(productId)
@@ -61,14 +62,16 @@ const Fav = () => {
 								const data = { id, ...doc.data() };
 								favData.push(data);
 
-								setLoading(false);
 								setFavs(favData);
 							});
-					})}
-				);
+					});
+				});
 		}
+		setInterval(() => {
+			setLoading(false);
+		}, 2000);
 	};
-	console.log(Favs)
+	console.log(Favs);
 	let loadThis = (
 		<div className='FavContainer'>
 			<div className='FavNav'>
@@ -94,10 +97,10 @@ const Fav = () => {
 				<h4
 					style={{
 						display: 'flex',
-						
+
 						alignItems: 'center',
 						height: '100%',
-						padding:'7em 10vw'
+						padding: '7em 10vw',
 					}}>
 					favourite something {localStorage.getItem('username')} {' :)'}
 				</h4>

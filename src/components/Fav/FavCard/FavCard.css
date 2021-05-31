@@ -15,8 +15,8 @@
 	border-radius: 50% ;
 	background:red;
 	color:#fff;
-	right: 0;
-	top: -2em;
+	right: -0.5em;
+	top: -1.3em;
 }
 .searchCard .cardImg {
 	display: flex;
