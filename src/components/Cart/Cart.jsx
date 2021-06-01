@@ -28,11 +28,11 @@ const Cart = () => {
 						.get()
 						.then((doc) => {
 							const id = productId;
-							let indx =finalArray.indexOf(productId)
-							const qt =data[indx].qt
-							console.log(qt)
-							LocalData.push({ id, ...doc.data(),qt });
-							console.log(LocalData);
+							let indx = finalArray.indexOf(productId);
+							const qt = data[indx].qt;
+
+							LocalData.push({ id, ...doc.data(), qt });
+
 							setcart(LocalData);
 						});
 				});
@@ -63,11 +63,9 @@ const Cart = () => {
 			{cart.length !== 0 ? (
 				cart.map((product) => {
 					return (
-						<div key={product.id}>
-							<Link to={`/shop/${product.id}`}>
-								<CartItems data={product} />
-							</Link>
-						</div>
+						
+							<CartItems data={product} />
+						
 					);
 				})
 			) : (
@@ -86,9 +84,7 @@ const Cart = () => {
 					<div className='emptyDiv'></div>
 				</div>
 				<h4 id='MyCart'>My Cart</h4>
-
-				{cartItemsToLoad}
-
+				<div className='cartItems'>{cartItemsToLoad}</div>
 				<div className='checkout'>
 					<h4>Order Info</h4>
 					<div className='subtotal'>

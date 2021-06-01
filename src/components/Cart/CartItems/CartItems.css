@@ -1,10 +1,13 @@
 .CartItems{
     margin-top:1em ;
    
-    width: 100%;
+    width: 90vw;
     height: 11.88rem;
     display: flex;
-    padding: 0 1em;
+    /* padding: 0 1em; */
+   
+   
+    
     
 }
 .CartItems .cartImgBox{
@@ -16,6 +19,7 @@
     width: 30%;
     height: 100%;
 	padding: 5px 0;
+    
 }
 .CartItems .cartImgBox img{
     height: auto;
@@ -29,6 +33,8 @@
 	margin-top: 4px;
 	color: rgba(77, 44, 205, 1);
 	font-size: 1.3em;
+
+    width: 100vw;
 }
 .CartItems .ActualPrice {
 	font-size: 0.8em;
@@ -60,6 +66,10 @@ font-weight: 500;
 	width: 100%;
 	height: auto;
 }
+.CartItems  a{
+    color:#000;
+    text-decoration:none
+}
 .CartItems .cartProductDescription .cartControls{
     position: absolute;
     bottom: 10px;
@@ -86,4 +96,11 @@ font-weight: 500;
 }
 .CartItems .cartProductDescription .cartControls #minus{
     font-weight: bolder;
+}
+@media (min-width:720px){
+    .CartItems .cartImgBox{
+   
+        
+        border-right: 1px solid rgba(0,0,0,0.5);
+    }
 }
