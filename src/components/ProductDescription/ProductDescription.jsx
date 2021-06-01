@@ -113,29 +113,40 @@ const ProductDescription = (props) => {
 		const cartRef = db.collection('cart').doc(localStorage.getItem('userId'));
 
 		cartRef.get().then((doc) => {
-			let cartItemsFromFB = doc.data().cartItems;
+			const cartItemsFromFB = [...doc.data().cartItems];
+			console.log(cartItemsFromFB);
 			let localCartItems = [];
-			let finalArray = cartItemsFromFB.map(function (obj) {
-				return obj.id;
-			});
+			let finalArray = [];
+			if (cartItemsFromFB !== 0 || cartItemsFromFB !== undefined) {
+				finalArray = cartItemsFromFB.map(function (obj) {
+					return obj.id;
+				});
+			}
 			if (cartItemsFromFB.length === 0) {
+				//first product to push
 				localCartItems.push({ id: id, qt: 1 });
-				console.log(localCartItems);
+				 console.log(localCartItems);
 				cartRef.set({
 					cartItems: localCartItems,
 				});
-			}
-			if (finalArray.includes(id) ) {
+			} 
+			
+			if (finalArray.includes(id) && finalArray.length !== 0) {
+				//product increace the quintity
 				let indx = finalArray.indexOf(id);
 				let localQt = cartItemsFromFB[indx].qt;
 				localCartItems = cartItemsFromFB;
 				localCartItems[indx].qt = localQt + 1;
-				// cartRef.update({
-				// 	cartItems: {
-				// 		id: id,
-				// 		qt: localQt,
-				// 	},
-				// });
+				cartRef.update({
+					cartItems: localCartItems
+				});
+			} else {
+				 localCartItems = cartItemsFromFB;
+				 localCartItems.push({ id: id, qt: 1 });
+				 console.log(localCartItems);
+				 cartRef.update({
+					cartItems: localCartItems
+				});
 			}
 		});
 	};
