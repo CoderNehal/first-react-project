@@ -92,7 +92,8 @@ height: auto;
    
   overflow-y: scroll;
   width: 100%;
-  height: 20em;
+  height: auto;
+  max-height: 20em;
   border-bottom:1px solid#000 ;
   border-top: 1px solid #000;
   

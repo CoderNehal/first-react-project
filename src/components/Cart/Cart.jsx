@@ -9,6 +9,8 @@ const Cart = () => {
 	let history = useHistory();
 	const [cart, setcart] = useState([]);
 	const [Loading, setLoading] = useState(true);
+	const [subTotal, setsubTotal] = useState(0);
+	const [ForcedUpdate, setForcedUpdate] = useState(true);
 	let LocalData = [];
 	useEffect(() => {
 		db.collection('cart')
@@ -31,9 +33,10 @@ const Cart = () => {
 							let indx = finalArray.indexOf(productId);
 							const qt = data[indx].qt;
 
-							LocalData.push({ id, ...doc.data(), qt });
+							LocalData.push({ id, ...doc.data(), qt, indx });
 
 							setcart(LocalData);
+							// CaclSubTotal(LocalData)
 						});
 				});
 
@@ -54,7 +57,31 @@ const Cart = () => {
 		setInterval(() => {
 			setLoading(false);
 		}, 1000);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+	useEffect(() => {
+		CaclSubTotal(LocalData);
+		console.log('Thsi rendered');
+	}, [ForcedUpdate]);
+	const CaclSubTotal = (list) => {
+		let priceTotal = list.map((obj) => {
+			return obj.price * obj.qt;
+		});
+		let sub_total = 0;
+		priceTotal.forEach((item) => {
+			sub_total += item;
+		});
+		setsubTotal(sub_total);
+		console.log(priceTotal);
+	};
+	const handlereRender = (indx, qt) => {
+		//Loook here plz
+		let localCartItems = LocalData;
+		localCartItems[indx].qt = qt;
+		LocalData = localCartItems;
+		CaclSubTotal(LocalData);
+		setForcedUpdate(!ForcedUpdate);
+	};
 
 	let cartItemsToLoad = (
 		<>
@@ -62,17 +89,14 @@ const Cart = () => {
 
 			{cart.length !== 0 ? (
 				cart.map((product) => {
-					return (
-						
-							<CartItems data={product} />
-						
-					);
+					return <CartItems data={product} onChange={handlereRender} />;
 				})
 			) : (
 				<h4>Add to cart something {localStorage.getItem('username')} </h4>
 			)}
 		</>
 	);
+
 	if (Loading) {
 		return <Spinner />;
 	} else {
@@ -88,7 +112,7 @@ const Cart = () => {
 				<div className='checkout'>
 					<h4>Order Info</h4>
 					<div className='subtotal'>
-						<span>Subtotal</span> <span>₹ 1223</span>
+						<span>Subtotal</span> <span>₹ {subTotal.toLocaleString()}</span>
 					</div>
 					<div className='shippingCost'>
 						<span>Shipping cost</span>
@@ -96,7 +120,7 @@ const Cart = () => {
 					</div>
 					<div className='totalAmount'>
 						<span>Total</span>
-						<span>₹ 1323</span>
+						<span>₹ {(subTotal + 100).toLocaleString()}</span>
 					</div>
 					<input type='button' value='CHECKOUT' className='checkOutBtn' />
 				</div>

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './CartItems.css';
 import { Link } from 'react-router-dom';
 
-const CartItems = ({ data }) => {
+const CartItems = ({ data, onChange }) => {
 	const [qt, setqt] = useState(data.qt);
 	let userId = localStorage.getItem('userId');
 
@@ -13,7 +13,7 @@ const CartItems = ({ data }) => {
 
 		cartRef.get().then((doc) => {
 			const cartItemsFromFB = [...doc.data().cartItems];
-			
+
 			let localCartItems = [];
 			let finalArray = [];
 			if (cartItemsFromFB !== 0 || cartItemsFromFB !== undefined) {
@@ -34,15 +34,18 @@ const CartItems = ({ data }) => {
 				})
 				.then(() => {
 					setqt(qt + 1);
+				})
+				.then(() => {
+					onChange(data.indx, qt + 1);
 				});
 		});
 	};
-    const HandleRemoveFromCart = () => {
+	const HandleRemoveFromCart = () => {
 		const cartRef = db.collection('cart').doc(localStorage.getItem('userId'));
 
 		cartRef.get().then((doc) => {
 			const cartItemsFromFB = [...doc.data().cartItems];
-			
+
 			let localCartItems = [];
 			let finalArray = [];
 			if (cartItemsFromFB !== 0 || cartItemsFromFB !== undefined) {
@@ -57,23 +60,29 @@ const CartItems = ({ data }) => {
 			let localQt = cartItemsFromFB[indx].qt;
 			localCartItems = cartItemsFromFB;
 			localCartItems[indx].qt = localQt - 1;
-            if(localCartItems[indx].qt===0){
-                localCartItems.splice(indx,1)
-                cartRef
-				.update({
-					cartItems: localCartItems,
-				}).then(()=>{
-                    window.location.reload(true)
-                })
-            }else{
-			cartRef
-				.update({
-					cartItems: localCartItems,
-				})
-				.then(() => {
-					setqt(qt - 1);
-				});
-            }
+			if (localCartItems[indx].qt === 0) {
+				localCartItems.splice(indx, 1);
+				cartRef
+					.update({
+						cartItems: localCartItems,
+					})
+					.then(() => {
+						alert('Item removed from cart');
+
+						window.location.reload(true);
+					});
+			} else {
+				cartRef
+					.update({
+						cartItems: localCartItems,
+					})
+					.then(() => {
+						setqt(qt - 1);
+					})
+					.then(() => {
+						onChange(data.indx, qt - 1);
+					});
+			}
 		});
 	};
 	return (
@@ -96,7 +105,12 @@ const CartItems = ({ data }) => {
 				<div className='cartControls'>
 					<input type='button' value='+' id='plus' onClick={HandleAddToCart} />
 					<span>{qt}</span>
-					<input type='button' value='-' id='minus' onClick={HandleRemoveFromCart} />
+					<input
+						type='button'
+						value='-'
+						id='minus'
+						onClick={HandleRemoveFromCart}
+					/>
 				</div>
 			</div>
 		</div>
