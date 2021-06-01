@@ -4,6 +4,7 @@
     width: 100%;
     height: 11.88rem;
     display: flex;
+    padding: 0 1em;
     
 }
 .CartItems .cartImgBox{

@@ -124,28 +124,31 @@ const ProductDescription = (props) => {
 			}
 			if (cartItemsFromFB.length === 0) {
 				//first product to push
+				alert('Product Added to cart')
 				localCartItems.push({ id: id, qt: 1 });
-				 console.log(localCartItems);
+				console.log(localCartItems);
 				cartRef.set({
 					cartItems: localCartItems,
 				});
-			} 
-			
+			}
+
 			if (finalArray.includes(id) && finalArray.length !== 0) {
 				//product increace the quintity
+				alert('Already in cart,increased quantity')
 				let indx = finalArray.indexOf(id);
 				let localQt = cartItemsFromFB[indx].qt;
 				localCartItems = cartItemsFromFB;
 				localCartItems[indx].qt = localQt + 1;
 				cartRef.update({
-					cartItems: localCartItems
+					cartItems: localCartItems,
 				});
 			} else {
-				 localCartItems = cartItemsFromFB;
-				 localCartItems.push({ id: id, qt: 1 });
-				 console.log(localCartItems);
-				 cartRef.update({
-					cartItems: localCartItems
+				alert('Product Added to cart')
+				localCartItems = cartItemsFromFB;
+				localCartItems.push({ id: id, qt: 1 });
+				console.log(localCartItems);
+				cartRef.update({
+					cartItems: localCartItems,
 				});
 			}
 		});
