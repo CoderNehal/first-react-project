@@ -94,3 +94,14 @@
 		border-right: 1px solid rgba(0, 0, 0, 0.5);
 	}
 } */
+
+@media (min-width: 720px) {
+	.CartItems .cartProductDescription {
+		font-size: 1.2em;
+	}
+	.CartItems .cartProductDescription .cartControls {
+		font-size:1em;
+		width: 8em;
+		height: 2.3em;
+	}
+}

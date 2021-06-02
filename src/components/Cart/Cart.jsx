@@ -36,7 +36,7 @@ const Cart = () => {
 							LocalData.push({ id, ...doc.data(), qt, indx });
 
 							setcart(LocalData);
-							// CaclSubTotal(LocalData)
+							CaclSubTotal(LocalData);
 						});
 				});
 
@@ -60,8 +60,8 @@ const Cart = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	useEffect(() => {
-		CaclSubTotal(LocalData);
-		console.log('Thsi rendered');
+		CaclSubTotal(cart);
+		console.log('This rendered');
 	}, [ForcedUpdate]);
 	const CaclSubTotal = (list) => {
 		let priceTotal = list.map((obj) => {
@@ -76,7 +76,7 @@ const Cart = () => {
 	};
 	const handlereRender = (indx, qt) => {
 		//Loook here plz
-		let localCartItems = LocalData;
+		let localCartItems = cart;
 		localCartItems[indx].qt = qt;
 		LocalData = localCartItems;
 		CaclSubTotal(LocalData);
@@ -122,7 +122,10 @@ const Cart = () => {
 						<span>Total</span>
 						<span>₹ {(subTotal + 100).toLocaleString()}</span>
 					</div>
+					<div className="checkOutWrapper">
 					<input type='button' value='CHECKOUT' className='checkOutBtn' />
+					</div>
+					
 				</div>
 			</div>
 		);
