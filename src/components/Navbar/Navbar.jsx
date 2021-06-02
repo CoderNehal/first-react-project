@@ -132,7 +132,7 @@ const Navbar = (props) => {
 	);
 
 	const handleSearch = (e) => {
-		setwhyThis(`/search/${inpVal}`);
+		setwhyThis(`/search/top-selling`);
 		if (e.key == 'Enter') {
 			document.getElementById('search').click();
 		}
@@ -154,7 +154,6 @@ const Navbar = (props) => {
 				</div>
 				<div className='NavbarRight'>
 					<div className='fav noselect'>
-						
 						{localStorage.getItem('isLogged') == 'false' ? (
 							<Link to='/login'>
 								<img src={fav} alt='' />
@@ -181,15 +180,14 @@ const Navbar = (props) => {
 			<Link
 				to={{
 					pathname: `${whyThis}`,
-					Props: `${inpVal}`,
+					HomeProps: `${inpVal}`,
 				}}>
 				<div className='search' id='search'>
-					<img src={magnifier} id='magnifier' alt='' />
+					<img src={magnifier} id='magnifier' alt='' onFocus={handleSearch} />
 					<img src={line} id='line' alt='' />
 					<input
 						type='text'
-						onChange={handleSearchText}
-						onKeyPress={handleSearch}
+						onFocus={handleSearch} 
 						className='searchbar'
 						name=''
 						id=''

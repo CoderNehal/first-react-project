@@ -85,7 +85,10 @@ class Home extends Component {
 					<div className='categoriesHeading'>
 						<h3 id='categories'>Top Selling</h3>
 						<p id='more'>
-							<Link>more &gt;</Link>
+							<Link to={{
+					pathname: `/search/top-selling`,
+					HomeProps: ``,
+				}}>more &gt;</Link>
 						</p>
 					</div>
 				</div>

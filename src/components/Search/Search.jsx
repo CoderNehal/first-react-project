@@ -7,6 +7,7 @@ import Card from './card/Card';
 import NoSearchResult from '../NoSearchResult/NoSearchResult';
 const Search = (props) => {
 	let name = props.location.Props;
+	let searchFromHome = props.location.HomeProps;
 	const [InputValue, seInputValue] = useState('');
 	const [SearchData, setSearchData] = useState([]);
 	const [isFound, setisFound] = useState(true);
@@ -68,7 +69,20 @@ const Search = (props) => {
 					setisFound(true);
 				});
 		}
+		
+		console.log('not thissssssss plz')
 	}, [name]);
+	useEffect(() => {
+		console.log('okkkkkkkkkkkk')
+		if(searchFromHome!==undefined){
+			seInputValue(searchFromHome)
+			LetsLoadSomeSearchedProduct()
+			if(SearchData.length!==0){
+				setisFound(true);
+			}
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	},[searchFromHome])
 	const LetsLoadSomeSearchedProduct = () => {
 		document.getElementById('name').style.display = 'none';
 		setLoading(true);
@@ -85,7 +99,7 @@ const Search = (props) => {
 					const ForSearch = data.specs;
 					const specs = ForSearch.map((str) => str.toLowerCase()).join(' ');
 					//const res = this.filterIt(doc,InputValue.toLowerCase())
-					
+
 					if (
 						name.includes(InputValue.toLowerCase()) ||
 						specs.includes(InputValue.toLowerCase()) ||
@@ -141,7 +155,7 @@ const Search = (props) => {
 				name=''
 				onClick={removeCollection}
 				id='name'
-				style={{ display: name ? 'blobk' : 'none' }}
+				style={{ display: name ? 'block' : 'none' }}
 			/>
 			<hr />
 			{Loading ? <Spinner /> : isFound ? productsToRender : <NoSearchResult />}

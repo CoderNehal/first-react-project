@@ -66,3 +66,9 @@
 	padding: 0.4px 0.9em;
 	margin-top: 7.5px;
 }
+
+@media (min-width:720px){
+	.search .searchbar{
+		width:91.5vw;
+	}
+}

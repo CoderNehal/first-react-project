@@ -7,7 +7,7 @@ function TopSelling() {
 		<div className='TopSellingHeading'>
 			<h3 id='categories'>Top Selling</h3>
 			<p id='more'>
-				<Link to='/collection'>more &gt;</Link>
+				<Link to='/collection/'>more &gt;</Link>
 			</p>
 		</div>
 	);
