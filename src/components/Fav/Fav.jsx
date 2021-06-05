@@ -44,7 +44,7 @@ const Fav = () => {
 		if (finalArray.includes(id)) {
 			const indx = finalArray.indexOf(id);
 			finalArray.splice(indx, 1);
-			console.log(finalArray);
+			
 			alert('Removed successfully');
 			db.collection('Favourites')
 				.doc(localStorage.getItem('userId'))
@@ -71,7 +71,7 @@ const Fav = () => {
 			setLoading(false);
 		}, 2000);
 	};
-	console.log(Favs);
+	
 	let loadThis = (
 		<div className='FavContainer'>
 			<div className='FavNav'>

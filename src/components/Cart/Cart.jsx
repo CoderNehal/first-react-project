@@ -61,7 +61,7 @@ const Cart = () => {
 	}, []);
 	useEffect(() => {
 		CaclSubTotal(cart);
-		console.log('This rendered');
+		
 	}, [ForcedUpdate]);
 	const CaclSubTotal = (list) => {
 		let priceTotal = list.map((obj) => {
@@ -72,7 +72,7 @@ const Cart = () => {
 			sub_total += item;
 		});
 		setsubTotal(sub_total);
-		console.log(priceTotal);
+		
 	};
 	const handlereRender = (indx, qt) => {
 		//Loook here plz

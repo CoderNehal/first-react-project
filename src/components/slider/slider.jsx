@@ -9,7 +9,7 @@ class slider extends Component {
      
 
     render() { 
-      console.log(this.props.images)
+      
         
         const settings = {
             dots: false,

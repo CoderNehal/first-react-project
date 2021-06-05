@@ -63,17 +63,17 @@ const Search = (props) => {
 						const data = { id, ...doc.data() };
 						products.push(data);
 					});
-					console.log(products);
+					
 					setSearchData(products);
 
 					setisFound(true);
 				});
 		}
 		
-		console.log('not thissssssss plz')
+		
 	}, [name]);
 	useEffect(() => {
-		console.log('okkkkkkkkkkkk')
+		
 		if(searchFromHome!==undefined){
 			seInputValue(searchFromHome)
 			LetsLoadSomeSearchedProduct()

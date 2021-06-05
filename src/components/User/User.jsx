@@ -50,7 +50,7 @@ const User = () => {
 						.get()
 						.then((doc) => {
 							var data = doc.data();
-
+							localStorage.setItem('email',email);
 							localStorage.setItem('username', data.name);
 							localStorage.setItem('address', data.address);
 							localStorage.setItem('city', data.city);
@@ -68,10 +68,10 @@ const User = () => {
 							// 	});
 						});
 					setuser(currentUser);
-					// localStorage.setItem('isLogged', 'true');
+					 localStorage.setItem('isLogged', 'true');
 					// localStorage.setItem('username', 'OurKart user');
 					// localStorage.setItem('email', email);
-					// localStorage.setItem('userId', currentUser.uid);
+					 localStorage.setItem('userId', currentUser.uid);
 					$('#Message').css('color', 'green');
 					$('#Message').text('Logged in successfully!');
 

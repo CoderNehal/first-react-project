@@ -72,10 +72,8 @@ const ProductDescription = (props) => {
 	};
 	const AddToFavs = () => {
 		let Fav = [];
-		const favRef = db
-
-			.collection('Favourites')
-			.doc(localStorage.getItem('userId'));
+		const favRef = db.collection('Favourites').doc(localStorage.getItem('userId'));
+		
 		favRef.get().then((doc) => {
 			if (doc.data() == undefined) {
 				// console.log(doc.data());
@@ -114,7 +112,7 @@ const ProductDescription = (props) => {
 
 		cartRef.get().then((doc) => {
 			const cartItemsFromFB = [...doc.data().cartItems];
-			console.log(cartItemsFromFB);
+			
 			let localCartItems = [];
 			let finalArray = [];
 			if (cartItemsFromFB !== 0 || cartItemsFromFB !== undefined) {
@@ -126,7 +124,7 @@ const ProductDescription = (props) => {
 				//first product to push
 				alert('Product Added to cart')
 				localCartItems.push({ id: id, qt: 1 });
-				console.log(localCartItems);
+				
 				cartRef.set({
 					cartItems: localCartItems,
 				});
@@ -146,7 +144,7 @@ const ProductDescription = (props) => {
 				alert('Product Added to cart')
 				localCartItems = cartItemsFromFB;
 				localCartItems.push({ id: id, qt: 1 });
-				console.log(localCartItems);
+				
 				cartRef.update({
 					cartItems: localCartItems,
 				});
