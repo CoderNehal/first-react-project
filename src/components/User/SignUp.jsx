@@ -78,7 +78,7 @@ const SignUp = () => {
 						<div className='userNav'>
 							<img src={backbtn} onClick={() => history.goBack()} alt='' />
 						</div>
-						<h3>Sigup</h3>
+						<h3>Sign up</h3>
 						<br />
 						<br />
 						<p>Email</p>

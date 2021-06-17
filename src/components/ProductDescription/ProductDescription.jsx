@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import db from '../../Firebase/Firebase';
 import { data } from 'jquery';
 import Spinner from '../Loading/Loading';
-
+  
 const ProductDescription = (props) => {
 	let id = props.match.params.id;
 	const [Data, setData] = useState({
@@ -53,27 +53,32 @@ const ProductDescription = (props) => {
 
 			.collection('orders')
 			.doc(localStorage.getItem('userId'));
-		ordersRef.get().then((doc) => {
-			if (doc.data() == undefined) {
-				//if no user found
-				orders.push(id);
-				ordersRef.set({
-					orders: orders,
-				});
-			} else {
-				let alreadyOrdered = doc.data().orders;
-				orders = alreadyOrdered;
-				orders.push(id);
-				ordersRef.set({
-					orders: orders,
-				});
-			}
-		});
+		ordersRef
+			.get()
+			.then((doc) => {
+				if (doc.data() == undefined) {
+					//if no user found
+					orders.push(id);
+					ordersRef.set({
+						orders: orders,
+					});
+				} else {
+					let alreadyOrdered = doc.data().orders;
+					orders = alreadyOrdered;
+					orders.push(id);
+					ordersRef.set({
+						orders: orders,
+					});
+				}
+			})
+			.then(() => alert('Payment Successfull!'));
 	};
 	const AddToFavs = () => {
 		let Fav = [];
-		const favRef = db.collection('Favourites').doc(localStorage.getItem('userId'));
-		
+		const favRef = db
+			.collection('Favourites')
+			.doc(localStorage.getItem('userId'));
+
 		favRef.get().then((doc) => {
 			if (doc.data() == undefined) {
 				// console.log(doc.data());
@@ -112,7 +117,7 @@ const ProductDescription = (props) => {
 
 		cartRef.get().then((doc) => {
 			const cartItemsFromFB = [...doc.data().cartItems];
-			
+
 			let localCartItems = [];
 			let finalArray = [];
 			if (cartItemsFromFB !== 0 || cartItemsFromFB !== undefined) {
@@ -122,17 +127,15 @@ const ProductDescription = (props) => {
 			}
 			if (cartItemsFromFB.length === 0) {
 				//first product to push
-				alert('Product Added to cart')
+				alert('Product Added to cart');
 				localCartItems.push({ id: id, qt: 1 });
-				
+
 				cartRef.set({
 					cartItems: localCartItems,
 				});
-			}
-
-			if (finalArray.includes(id) && finalArray.length !== 0) {
+			} else if (finalArray.includes(id) && finalArray.length !== 0) {
 				//product increace the quintity
-				alert('Already in cart,increased quantity')
+				alert('Already in cart,increased quantity');
 				let indx = finalArray.indexOf(id);
 				let localQt = cartItemsFromFB[indx].qt;
 				localCartItems = cartItemsFromFB;
@@ -141,10 +144,10 @@ const ProductDescription = (props) => {
 					cartItems: localCartItems,
 				});
 			} else {
-				alert('Product Added to cart')
+				alert('Product Added to cart');
 				localCartItems = cartItemsFromFB;
 				localCartItems.push({ id: id, qt: 1 });
-				
+
 				cartRef.update({
 					cartItems: localCartItems,
 				});
