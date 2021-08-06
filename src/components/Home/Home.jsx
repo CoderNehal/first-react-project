@@ -37,7 +37,7 @@ class Home extends Component {
 			{
 				id: 'knA9t1aE9A02JjFHN7dp',
 				name: 'New Apple iPhone 12 Pro Max (128GB) - Silver',
-				price: 1259000,
+				price: 125900,
 				discount: 3,
 				img: 'https://m.media-amazon.com/images/I/71umuN8XVeL._AC_SL1500_.jpg',
 			},
